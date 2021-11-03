@@ -1,0 +1,201 @@
+  
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
+        <title>SUPERLOC</title>
+    </head>
+<body>
+    <header class=banner>
+        <div id="logo">
+            <a href="./index.html">LOGO</a>
+        </div>
+        <div id="coordonnées">
+            Contactez-nous au<br>
+            <strong>0 810 24 24 24</strong><br>
+            gratuit + prix appel
+        </div>
+        <div id="config_menu">
+            <div id="nom_entreprise">
+                <b>SUPERLOC</b>
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="./catalogue.html"><b>Catalogue</b></a></li>
+                    <li><a href="./particuliers.html"><b>Espace particuliers</b></a></li>
+                    <li><a href="./pros.html"><b>Espace pro</b></a></li>
+                    <li><a href="./inscription.html"><b>Inscription</b></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="config_menu">
+            <div id="configuration">
+                <div id="langue">
+                    <b>FR</b>
+                </div>
+                <div id=calendrier_horloge>
+                    <div id="horloge">
+                        <script>
+                            window.onload=function() {
+                            horloge('horloge');
+                            };
+                            function horloge(el) {
+                            if(typeof el=="string") { el = document.getElementById(el); }
+                            function actualiser() {
+                            var date = new Date();
+                            var str = date.getHours();
+                            str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
+                            str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+                            el.innerHTML = str;
+                            }
+                            actualiser();
+                            setInterval(actualiser,1000);
+                            }
+                        </script>
+                    </div>    
+                    <div id="calendrier">
+                        <script>
+                            var mydate=new Date()
+                            var year=mydate.getYear()
+                            if (year<2000)
+                            year += (year < 1900) ? 1900 : 0
+                            var day=mydate.getDay()
+                            var month=mydate.getMonth()
+                            var daym=mydate.getDate()
+                            if (daym<10)
+                            daym="0"+daym
+                            var dayarray=new Array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
+                            var montharray=new Array(" janvier "," février "," mars ","avril ","mai ","juin","juillet ","août ","septembre "," octobre "," novembre "," décembre ")
+                            document.write("   "+dayarray[day]+" "+daym+" "+montharray[month]+year+" ")
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div id="partie_gauche">   
+            <div id=vide>
+            </div>
+            <div class="carrousel">
+                <input type="radio" name="images" id="i1" checked>
+                <input type="radio" name="images" id="i2">
+                <input type="radio" name="images" id="i3">
+                <input type="radio" name="images" id="i4">
+                <input type="radio" name="images" id="i5">
+                    <div class="carrousel_img" id="une">
+                        <img src="images/citadine.jpg" alt="Citadine">
+                        <figcaption>Louer une citadine</figcaption>
+                        <label for="i5" class="pre"></label>
+                        <label for="i2" class="nex"></label>
+                    </div>
+                    <div class="carrousel_img" id="deux">
+                        <img src="images/routiere.jpg" alt="Routière">
+                        <figcaption>Louer une routière</figcaption>
+                        <label for="i1" class="pre"></label>
+                        <label for="i3" class="nex"></label>
+                    </div>
+                    <div class="carrousel_img" id="trois">
+                        <img src="images/luxe.jpg" alt="Luxe">
+                        <figcaption>Louer une voiture de luxe</figcaption>
+                        <label for="i2" class="pre"></label>
+                        <label for="i4" class="nex"></label>
+                    </div>  
+                    <div class="carrousel_img" id="quatre">
+                        <img src="images/transport.jpg" alt="Transport de personnes">
+                        <figcaption>Louer un véhicule de transport de personnes</figcaption>
+                        <label for="i3" class="pre"></label>
+                        <label for="i5" class="nex"></label>
+                    </div>        
+                    <div class="carrousel_img" id="cinq">
+                        <img src="images/utilitaire.jpg" alt="Utilitaire">
+                        <figcaption>Louer un utilitaire</figcaption>
+                        <label for="i4" class="pre"></label>
+                        <label for="i1" class="nex"></label>
+                    </div>
+            </div>
+        </div>
+        <div id="partie_droite">
+            <div id="promotion">
+                <h2>Super Promo !</h2>
+                Citadine à partir de 39€ TTC/JOUR<br>
+                <img src="images/trois_voitures.jpg" alt="Trois voitures" />
+            </div>
+            <div id="location_rapide">
+                <h2>Louer un véhicule</h2>
+                 <p>
+                    Trouver votre agence
+                    <button type="submit">Go !</button>
+                </p>
+                <form>
+                    <p>
+                        <input type="radio" id="Choix1"
+                        name="typevehicules" value="Tous véhicules" checked>
+                        <label for="Choix1">Tous véhicules</label>
+                        <input type="radio" id="Choix2"
+                        name="typevehicules" value="Voitures">
+                        <label for="Choix2">Voitures</label>
+                        <input type="radio" id="Choix3"
+                        name="typevehicules" value="Utilitaires">
+                        <label for="Choix3">Utilitaires</label>
+                    </p>
+                    <p>
+                        <label for="BEGDA">Départ :</label>
+                        <input type="datetime-local" id="BEGDA"
+                        name="BEGDA"
+                        min="2021-10-01T00:00" max="2022-12-01T00:00" required><br>
+                        <label for="ENDDA">Retour :</label>
+                        <input type="datetime-local" id="ENDDA"
+                        name="ENDDA"
+                        min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                    </p>
+                    <p>
+                        <input type="submit" value="Réserver !">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class=banner>
+        <div class="footer-bloc">
+            <h1>Louer</h1>
+            <nav class="nav-footer" aria-label="Louer">
+                <ul class="nav-column">
+                    <li><a href="./louer_particulier.html">Louer une voiture</a></li>
+                    <li><a href="./louer_pro.html">Louer un utilitaire</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-bloc">
+            <h1>Espace client</h1>
+            <nav class="nav-footer" aria-label="Espace client">
+                <ul class="nav-column">
+                    <li><a href="./gerer_reservation.html">Gérer vos réservations</a></li>
+                    <li><a href="./imprimer_facture.html">Imprimer une facture</a></li>
+                    <li><a href="./conditions_generales.html">Conditions générales</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-bloc">
+            <h1>A propos</h1>
+            <nav class="nav-footer" aria-label="A propos">
+                <ul class="nav-column">
+                    <li><a href="./notre_entreprise.html">Notre entreprise</a></li>
+                    <li><a href="./agences.html">Nos agences</a></li>
+                    <li><a href="./contact.html">Nous contacter</a></li>
+                    <li><a href="./mentions_legales.html">Mentions légales</a></li>
+                </ul>
+            </nav>
+        </div>    
+        <div class="footer-bloc">
+            <h1>Suivez nous</h1>
+            <div id="reseaux_sociaux">
+                <a href="http://www.facebook.com" title="Suivez nous sur Facebook" target="_blank"><img src="icons/facebook.png" alt="Facebook" /></a>
+                <a href="http://www.twitter.com" title="Suivez nous sur Twitter" target="_blank"><img src="icons/twitter.png" alt="Twitter" /></a>
+                <a href="http://www.instagram.com" title="Suivez nous sur Instagram" target="_blank"><img src="icons/instagram.png" alt="Instagram" /></a>
+            </div>    
+        </div> 
+    </footer>
+</body>
+</html>

@@ -17,7 +17,7 @@
 
 body
 {
-    background-color: rgba(0, 162, 255, 0.938);
+    background-color: rgba(125, 180, 245, 1);
 }
 
 a:hover
@@ -52,7 +52,6 @@ header a
     height: 100px;
     border:3px white solid;
     border-radius: 10px;
-    background-color: rgba(0, 162, 255, 0.938);
     padding: 5px;
     color: white;
     text-align: center;
@@ -126,7 +125,7 @@ header a
     display: flex;
     flex-direction: column;
     border : 2px black solid;
-    background :linear-gradient(rgba(14, 97, 252, 0.938),rgba(0, 162, 255, 0.938));
+    background :linear-gradient(rgba(14, 97, 252, 0.938), rgba(125, 180, 245, 1));
     border-radius:3px;
     border-bottom: none;
     padding:10px;

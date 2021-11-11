@@ -4,8 +4,7 @@
     src: url('fonts/LiberationSans-Regular-webfont.eot');
     src: url('fonts/LiberationSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/LiberationSans-Regular-webfont.woff') format('woff'),
-         url('fonts/LiberationSans-Regular-webfont.ttf') format('truetype'),
-         url('fonts/LiberationSans-Regular-webfont.svg#liberation_sansregular') format('svg');
+         url('fonts/LiberationSans-Regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -77,18 +76,16 @@ header a
     min-width: 70%;
 }
 
-#config_menu
+#configuration
 {
     display :flex;
     flex-direction: column;
-    text-align: right;
+    align-items: self-end;
     min-width: 10%;
 }
 
 #langue
 {
-    display: flex;
-    max-width: 20px;
     color: white;
     border: white solid;
     border-radius: 5px;
@@ -96,21 +93,16 @@ header a
     padding: 5px;
 }
 
-#calendrier_horloge
-{
-    display :flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
 #calendrier
 {
     margin: 10px;
+    text-align: center;
 }
 
 #horloge
 {
     margin: 10px;
+    text-align: center;
 }
 
 #menu ul
@@ -147,9 +139,11 @@ section
 display: flex;
 flex-direction: column;
 justify-content: space-around;
+vertical-align: bottom;
 align-items: center;
-background-image: url("./images/voitures.jpg");
+background-image: url("images/voitures.jpg");
 background-size:cover;
+background-position-y: bottom;
 min-width: 70%;
 }
 
@@ -282,7 +276,43 @@ figcaption
     border-radius: 10px;
     box-shadow: 3px 3px 3px gray;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    min-height: 200px;
 }
+#choix_vehicule
+{
+    padding: 10px;
+}
+
+#choix_date
+{
+    padding-right: 10px;
+    display: flex;
+}
+
+#depart
+{
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+}
+
+#retour
+{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+#reserver
+{
+    padding: 20px;
+}
+
 
 footer
 {

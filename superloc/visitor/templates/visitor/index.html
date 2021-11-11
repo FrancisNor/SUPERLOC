@@ -2,15 +2,16 @@
 <!doctype html>
 <html lang="fr">
     <head>
+        {% load static %}
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
-        <title>SUPERLOC</title>
+        <link rel="stylesheet" href="{% static 'visitor/style.css' %}" />
+        <title>SUPERLOC | Location de véhicules de tourisme et utilitaires</title>
     </head>
 <body>
     <header class=banner>
         <div id="logo">
-            <a href="./index.html" title="Accueil">
-            <img src="images/logopetit.png" alt="logo"></a>
+            <a href="{% url 'visitor:home' %}" title="Accueil">
+            <img src="../../static/visitor/images/logopetit.png" alt="logo"></a>
         </div>
         <div id="coordonnées">
             Contactez-nous<br>
@@ -32,47 +33,45 @@
                 </ul>
             </nav>
         </div>
-        <div id="config_menu">
-            <div id="configuration">
-                <div id="langue">
-                    <b>FR</b>
+        <div id="configuration">
+            <div id="langue">
+                <b>FR</b>
+            </div>
+            <div id=calendrier_horloge>
+                <div id="horloge">
+                    <script>
+                        window.onload=function() {
+                        horloge('horloge');
+                        };
+                        function horloge(el) {
+                        if(typeof el=="string") { el = document.getElementById(el); }
+                        function actualiser() {
+                        var date = new Date();
+                        var str = date.getHours();
+                        str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
+                        str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+                        el.innerHTML = str;
+                        }
+                        actualiser();
+                        setInterval(actualiser,1000);
+                        }
+                    </script>
                 </div>
-                <div id=calendrier_horloge>
-                    <div id="horloge">
-                        <script>
-                            window.onload=function() {
-                            horloge('horloge');
-                            };
-                            function horloge(el) {
-                            if(typeof el=="string") { el = document.getElementById(el); }
-                            function actualiser() {
-                            var date = new Date();
-                            var str = date.getHours();
-                            str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
-                            str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
-                            el.innerHTML = str;
-                            }
-                            actualiser();
-                            setInterval(actualiser,1000);
-                            }
-                        </script>
-                    </div>    
-                    <div id="calendrier">
-                        <script>
-                            var mydate=new Date()
-                            var year=mydate.getYear()
-                            if (year<2000)
-                            year += (year < 1900) ? 1900 : 0
-                            var day=mydate.getDay()
-                            var month=mydate.getMonth()
-                            var daym=mydate.getDate()
-                            if (daym<10)
-                            daym="0"+daym
-                            var dayarray=new Array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
-                            var montharray=new Array(" Janvier "," Février "," Mars ","Avril ","Mai ","Juin","Juillet ","Août ","Septembre "," Octobre "," Novembre "," Décembre ")
-                            document.write("   "+dayarray[day]+" "+daym+" "+montharray[month]+year+" ")
-                        </script>
-                    </div>
+                <div id="calendrier">
+                    <script>
+                        var mydate=new Date()
+                        var year=mydate.getYear()
+                        if (year<2000)
+                        year += (year < 1900) ? 1900 : 0
+                        var day=mydate.getDay()
+                        var month=mydate.getMonth()
+                        var daym=mydate.getDate()
+                        if (daym<10)
+                        daym="0"+daym
+                        var dayarray=new Array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
+                        var montharray=new Array(" Janvier "," Février "," Mars ","Avril ","Mai ","Juin","Juillet ","Août ","Septembre "," Octobre "," Novembre "," Décembre ")
+                        document.write("   "+dayarray[day]+" "+daym+" "+montharray[month]+year+" ")
+                    </script>
                 </div>
             </div>
         </div>
@@ -88,31 +87,31 @@
                 <input type="radio" name="images" id="i4">
                 <input type="radio" name="images" id="i5">
                     <div class="carrousel_img" id="une">
-                        <img src="images/citadine.jpg" alt="Citadine">
+                        <img src="../../static/visitor/images/citadine.jpg" alt="Citadine">
                         <figcaption>Louer une citadine</figcaption>
                         <label for="i5" class="pre"></label>
                         <label for="i2" class="nex"></label>
                     </div>
                     <div class="carrousel_img" id="deux">
-                        <img src="images/routiere.jpg" alt="Routière">
+                        <img src="../../static/visitor/images/routiere.jpg" alt="Routière">
                         <figcaption>Louer une routière</figcaption>
                         <label for="i1" class="pre"></label>
                         <label for="i3" class="nex"></label>
                     </div>
                     <div class="carrousel_img" id="trois">
-                        <img src="images/luxe.jpg" alt="Luxe">
+                        <img src="../../static/visitor/images/luxe.jpg" alt="Luxe">
                         <figcaption>Louer une voiture de luxe</figcaption>
                         <label for="i2" class="pre"></label>
                         <label for="i4" class="nex"></label>
                     </div>  
                     <div class="carrousel_img" id="quatre">
-                        <img src="images/transport.jpg" alt="Transport de personnes">
+                        <img src="../../static/visitor/images/transport.jpg" alt="Transport de personnes">
                         <figcaption>Louer un véhicule de transport de personnes</figcaption>
                         <label for="i3" class="pre"></label>
                         <label for="i5" class="nex"></label>
                     </div>        
                     <div class="carrousel_img" id="cinq">
-                        <img src="images/utilitaire.jpg" alt="Utilitaire">
+                        <img src="../../static/visitor/images/utilitaire.jpg" alt="Utilitaire">
                         <figcaption>Louer un utilitaire</figcaption>
                         <label for="i4" class="pre"></label>
                         <label for="i1" class="nex"></label>
@@ -123,16 +122,16 @@
             <div id="promotion">
                 <h2>Super Promo !</h2>
                 Citadine à partir de 39€ TTC/JOUR<br>
-                <img src="images/trois_voitures.jpg" alt="Trois voitures" />
+                <img src="../../static/visitor/images/trois_voitures.jpg" alt="Trois voitures" />
             </div>
             <div id="location_rapide">
                 <h2>Louer un véhicule</h2>
-                 <p>
+                <div id="agence">
                     Trouver votre agence
                     <button type="submit">Go !</button>
-                </p>
+                </div>
                 <form>
-                    <p>
+                    <div id="choix_vehicule">
                         <input type="radio" id="Choix1"
                         name="typevehicules" value="Tous véhicules" checked>
                         <label for="Choix1">Tous véhicules</label>
@@ -142,20 +141,24 @@
                         <input type="radio" id="Choix3"
                         name="typevehicules" value="Utilitaires">
                         <label for="Choix3">Utilitaires</label>
-                    </p>
-                    <p>
-                        <label for="BEGDA">Départ :</label>
-                        <input type="datetime-local" id="BEGDA"
-                        name="BEGDA"
-                        min="2021-10-01T00:00" max="2022-12-01T00:00" required><br>
-                        <label for="ENDDA">Retour :</label>
-                        <input type="datetime-local" id="ENDDA"
-                        name="ENDDA"
-                        min="2021-10-01T00:00" max="2022-12-01T00:00" required>
-                    </p>
-                    <p>
+                    </div>
+                    <div id="choix_date">
+                        <div id="depart">
+                            <label for="BEGDA">Départ</label>
+                            <input type="datetime-local" id="BEGDA"
+                            name="BEGDA"
+                            min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                        </div>
+                        <div id="retour">
+                            <label for="ENDDA">Retour</label>
+                            <input type="datetime-local" id="ENDDA"
+                            name="ENDDA"
+                            min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                        </div>
+                    </div>
+                    <div id="reserver">
                         <input type="submit" value="Réserver !">
-                    </p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -194,9 +197,9 @@
         <div class="footer-bloc">
             <h1>Suivez nous</h1>
             <div id="reseaux_sociaux">
-                <a href="http://www.facebook.com" title="Suivez nous sur Facebook" target="_blank"><img src="icons/facebook.png" alt="Facebook" /></a>
-                <a href="http://www.twitter.com" title="Suivez nous sur Twitter" target="_blank"><img src="icons/twitter.png" alt="Twitter" /></a>
-                <a href="http://www.instagram.com" title="Suivez nous sur Instagram" target="_blank"><img src="icons/instagram.png" alt="Instagram" /></a>
+                <a href="http://www.facebook.com" title="Suivez nous sur Facebook" target="_blank"><img src="../../static/visitor/icons/facebook.png" alt="Facebook" /></a>
+                <a href="http://www.twitter.com" title="Suivez nous sur Twitter" target="_blank"><img src="../../static/visitor/icons/twitter.png" alt="Twitter" /></a>
+                <a href="http://www.instagram.com" title="Suivez nous sur Instagram" target="_blank"><img src="../../static/visitor/icons/instagram.png" alt="Instagram" /></a>
             </div>    
         </div> 
     </footer>

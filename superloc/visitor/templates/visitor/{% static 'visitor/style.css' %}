@@ -1,0 +1,352 @@
+@font-face
+{
+    font-family: 'liberation_sansregular';
+    src: url('fonts/LiberationSans-Regular-webfont.eot');
+    src: url('fonts/LiberationSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/LiberationSans-Regular-webfont.woff') format('woff'),
+         url('fonts/LiberationSans-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*
+{
+    font-family: liberation_sansregular, Arial, Helvetica, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body
+{
+    background-color: rgba(125, 180, 245, 1);
+}
+
+a:hover
+{
+    color: black;
+}
+
+header
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+header a
+{
+    text-decoration: none;
+    color:white;
+}
+
+#logo
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 10%;
+    height: 150px;
+}
+
+#coordonnées
+{   
+    align-items: center;
+    height: 100px;
+    border:3px white solid;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    min-width: 10%;
+}
+
+#nom_entreprise
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    font-style: italic;
+}
+
+#nom_menu
+{
+    display :flex;
+    flex-direction: column;
+    text-align: right;
+    min-width: 70%;
+}
+
+#configuration
+{
+    display :flex;
+    flex-direction: column;
+    align-items: self-end;
+    min-width: 10%;
+}
+
+#langue
+{
+    color: white;
+    border: white solid;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+#calendrier
+{
+    margin: 10px;
+    text-align: center;
+}
+
+#horloge
+{
+    margin: 10px;
+    text-align: center;
+}
+
+#menu ul
+{
+    list-style-type: none;
+    display: flex;
+    align-items:baseline;
+}
+
+#menu li
+{
+    display: flex;
+    flex-direction: column;
+    border : 2px black solid;
+    background :linear-gradient(rgba(14, 97, 252, 0.938), rgba(125, 180, 245, 1));
+    border-radius:3px;
+    border-bottom: none;
+    padding:10px;
+    min-width: 20%;
+    color: white;
+    text-align: center;
+    margin:auto;
+}
+
+section
+{
+    display: flex;
+    justify-content:space-around;
+}
+
+
+#partie_gauche
+{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+vertical-align: bottom;
+align-items: center;
+background-image: url("images/voitures.jpg");
+background-size:cover;
+background-position-y: bottom;
+min-width: 70%;
+}
+
+.carrousel
+{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 570px;
+    height: 278px;
+}
+
+/*remplissage du cadre par la photo*/
+.carrousel_img
+{
+    position: absolute;
+    width: 570px;
+    height: 278px;
+}
+    
+/* idem pour toutes les photos*/
+.carrousel_img img
+{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+    
+/*on cache les boutons radios*/
+#i1, #i2, #i3, #i4, #i5
+{
+    display: none;
+}
+
+/*positionnement et dimension de > et <*/
+.pre, .nex
+{
+    position: absolute;
+    font-size: 3rem;
+    height: 3rem;
+    vertical-align: middle;
+    line-height: 4rem;
+    top: 50%;
+    cursor: pointer;
+}
+    
+.pre
+{
+    left: 0;
+}
+
+.nex
+{
+    right: 0;
+}
+    
+#i1:checked ~ #une,
+#i2:checked ~ #deux,
+#i3:checked ~ #trois,
+#i4:checked ~ #quatre,
+#i5:checked ~ #cinq
+{
+    z-index: 9;
+}
+    
+label:before,
+label:after
+{
+    color:darkgray;
+    background: rgba(255,255,255,0.8);
+    position: absolute;
+}
+    
+label.pre:before
+{
+    content: "\276C";
+    left: 100%;
+    border-top-right-radius: 45%;
+    border-bottom-right-radius: 45%;
+}
+
+label.nex:after
+{
+    content: "\276D";
+    right: 100%;
+    border-top-left-radius: 45%;
+    border-bottom-left-radius: 45%;
+}
+
+/*paramétrage de la légende des photos*/
+figcaption
+{    
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    justify-content: center;
+    color:white;
+}
+
+#partie_droite
+{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 30%;
+}
+
+#promotion
+{
+    max-width: 300px;
+    border: 3px red solid;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px gray;
+    margin :5px;
+    padding: 10px;
+    background-color: white;
+    color: red;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+}
+
+#location_rapide
+{
+    margin: 5px;
+    padding: 10px;
+    border: 5px black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px gray;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    min-height: 200px;
+}
+#choix_vehicule
+{
+    padding: 10px;
+}
+
+#choix_date
+{
+    padding-right: 10px;
+    display: flex;
+}
+
+#depart
+{
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+}
+
+#retour
+{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+#reserver
+{
+    padding: 20px;
+}
+
+
+footer
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+footer h1
+{
+    font-size: 1.5em;
+}
+
+footer a
+{
+    text-decoration: none;
+    color:white;
+}
+
+.footer-bloc
+{
+    display: flex;
+    flex-direction: column;
+}
+
+footer ul
+{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+#reseaux_sociaux
+{
+    display:flex;
+    justify-content: space-between;
+    min-width: 300px;
+}

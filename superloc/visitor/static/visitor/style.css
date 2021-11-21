@@ -127,7 +127,7 @@ header a
     margin:auto;
 }
 
-section
+#main_content
 {
     display: flex;
     justify-content:space-around;

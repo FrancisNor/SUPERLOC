@@ -12,15 +12,15 @@
             <a href="{% url 'visitor:home' %}" title="Accueil">
             <img src="{% static 'visitor/images/logopetit.png' %}" alt="logo"></a>
         </div>
-        <div id="coordonnées">
+        <div id="contact">
             Contactez-nous<br>
             au<br>
             <strong>0 810 24 24 24</strong><br>
             gratuit<br>
             + prix appel
         </div>
-        <div id="nom_menu">
-            <div id="nom_entreprise">
+        <div id="menu_name">
+            <div id="company_name">
                 <b>SUPERLOC</b>
             </div>
             <nav id="menu">
@@ -33,14 +33,14 @@
             </nav>
         </div>
         <div id="configuration">
-            <div id="langue">
+            <div id="language">
                 <b>FR</b>
             </div>
-            <div id=calendrier_horloge>
-                <div id="horloge">
+            <div id=calendar_clock>
+                <div id="clock">
                     <script>
                         window.onload=function() {
-                        horloge('horloge');
+                        horloge('clock');
                         };
                         function horloge(el) {
                         if(typeof el=="string") { el = document.getElementById(el); }
@@ -56,7 +56,7 @@
                         }
                     </script>
                 </div>
-                <div id="calendrier">
+                <div id="calendar">
                     <script>
                         var mydate=new Date()
                         var year=mydate.getYear()
@@ -109,9 +109,9 @@
                 </ul>
             </nav>
         </div>    
-        <div class="footer-bloc">
+        <div class="footer-block">
             <h1>Suivez nous</h1>
-            <div id="reseaux_sociaux">
+            <div id="social_networks">
                 <a href="http://www.facebook.com" title="Suivez nous sur Facebook" target="_blank"><img src="{% static 'visitor/icons/facebook.png' %}" alt="Facebook" /></a>
                 <a href="http://www.twitter.com" title="Suivez nous sur Twitter" target="_blank"><img src="{% static 'visitor/icons/twitter.png' %}" alt="Twitter" /></a>
                 <a href="http://www.instagram.com" title="Suivez nous sur Instagram" target="_blank"><img src="{% static 'visitor/icons/instagram.png' %}" alt="Instagram" /></a>

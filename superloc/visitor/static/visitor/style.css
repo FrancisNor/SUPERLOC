@@ -313,6 +313,53 @@ figcaption
     padding: 20px;
 }
 
+.display_categories
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: 350px;
+}
+
+.display_categories h1
+{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.categories_strip
+{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.categories
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.categories_category
+{
+    border: black solid 2px;
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.categories_category img
+{
+    display: block;
+    width: 50%;
+    max-height: 50%;
+    max-width: 50%;
+}
+
 
 footer
 {

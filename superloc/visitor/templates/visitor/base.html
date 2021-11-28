@@ -10,7 +10,7 @@
     <header class=banner>
         <div id="logo">
             <a href="{% url 'visitor:home' %}" title="Accueil">
-            <img src="{% static 'visitor/images/logopetit.png' %}" alt="logo"></a>
+            <img src="{% static 'visitor/images/logo.png' %}" alt="logo"></a>
         </div>
         <div id="contact">
             Contactez-nous<br>
@@ -25,10 +25,10 @@
             </div>
             <nav id="menu">
                 <ul>
-                    <li><a href="./catalogue.html"><b>Catalogue</b></a></li>
-                    <li><a href="./particuliers.html"><b>Espace particuliers</b></a></li>
-                    <li><a href="./pros.html"><b>Espace pro</b></a></li>
-                    <li><a href="./inscription.html"><b>Inscription</b></a></li>
+                    <li><a href="{% url 'visitor:tourism_categories' %}"><b>Catalogue</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Espace particuliers</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Espace pro</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Inscription</b></a></li>
                 </ul>
             </nav>
         </div>
@@ -83,8 +83,8 @@
             <h1>Louer</h1>
             <nav class="nav-footer" aria-label="Louer">
                 <ul class="nav-column">
-                    <li><a href="./louer_particulier.html">Louer une voiture</a></li>
-                    <li><a href="./louer_pro.html">Louer un utilitaire</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Louer une voiture</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Louer un utilitaire</a></li>
                 </ul>
             </nav>
         </div>
@@ -92,9 +92,9 @@
             <h1>Espace client</h1>
             <nav class="nav-footer" aria-label="Espace client">
                 <ul class="nav-column">
-                    <li><a href="./gerer_reservation.html">Gérer vos réservations</a></li>
-                    <li><a href="./imprimer_facture.html">Imprimer une facture</a></li>
-                    <li><a href="./conditions_generales.html">Conditions générales</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Gérer vos réservations</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Imprimer une facture</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Conditions générales</a></li>
                 </ul>
             </nav>
         </div>
@@ -102,9 +102,9 @@
             <h1>A propos</h1>
             <nav class="nav-footer" aria-label="A propos">
                 <ul class="nav-column">
-                    <li><a href="./notre_entreprise.html">Notre entreprise</a></li>
-                    <li><a href="./agences.html">Nos agences</a></li>
-                    <li><a href="./contact.html">Nous contacter</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Notre entreprise</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Nos agences</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Nous contacter</a></li>
                     <li><a href="{% url 'visitor:legal_notice' %}">Mentions légales</a></li>
                 </ul>
             </nav>
@@ -120,7 +120,3 @@
     </footer>
 </body>
 </html>
-
-<!--
-TODO: convertir liens
--->

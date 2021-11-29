@@ -1,0 +1,67 @@
+{% extends "./base.html" %}
+
+{% load static %}
+
+{% block title %}{{ category.label }}{% endblock %}
+
+{% block content %}
+<div id="category">
+    <h1 id="category_title">{{ category.label }} - Groupe {{ category.code }} : {{category.sample}} ou équivalent</h1>
+    <div id="category_details">
+        <img id="category_image" src="{{category.image.url}}" alt="image"/>
+        <div id="category_features">
+            <p id="category_description">{{category.description}}</p>
+            <table id="features">
+                <tbody>
+                <tr>
+                    <th scope="col">
+                        <img title="nbr_place" src="{% static 'visitor/icons/car_details_passengers.png'%}" alt="nbr_places"/>
+                    </th>
+                    <td>
+                        {{category.nb_seats}} places
+                    </td>
+                    <th scope="col">
+                        <img title="nbr_luggage" src="{% static 'visitor/icons/car_details_luggage.png'%}" alt="nbr_valises"/>
+                    </th>
+                    <td>
+                        {{category.nb_luggage}} bagage{{category.nb_luggage|pluralize}}
+                    </td>
+                    <th scope="col">
+                        <img title="nbr_portes" src="{% static 'visitor/icons/car_details_doors.png'%}" alt="nbr_portes"/>
+                    </th>
+                    <td>
+                        {{category.nb_doors}} porte{{category.nb_doors|pluralize}}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        <img title="transmission" src="{% static 'visitor/icons/car_details_transmission.png'%}" alt="transmission"/>
+                    </th>
+                    <td>
+                        {{category.get_gear_display}}
+                    </td>
+                    <th scope="col">
+                        <img title="énergie" src="{% static 'visitor/icons/car_details_energy.png'%}" alt="énergie"/>
+                    </th>
+                    <td>
+                        {{category.get_energy_display}}
+                    </td>
+                    <th scope="col">
+                        <img title="climatisation" src="{% static 'visitor/icons/car_details_AC.png'%}" alt="climatisation"/>
+                    </th>
+                    <td>
+                        {% if category.climate_control %}Climatisation
+                        {% else %}Pas de climatisation
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Véhicules similaires : {{category.equivalent}}</p>
+        </div>
+    </div>
+    <div id="category_legal">
+        <p>Pré-autorisation bancaire : {{category.pre_pay}} € - Ce montant vous sera demandé en agence lors de la prise du véhicule, mais ne sera pas débité de votre compte bancaire sauf en cas de non restituation ou de dégradation du véhicule.</p>
+    </div>
+</div>
+{% endblock %}

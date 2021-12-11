@@ -45,7 +45,7 @@ header a
     height: 150px;
 }
 
-#coordonnées
+#contact
 {   
     align-items: center;
     height: 100px;
@@ -58,7 +58,7 @@ header a
     min-width: 10%;
 }
 
-#nom_entreprise
+#company_name
 {
     display: flex;
     flex-direction: column;
@@ -68,7 +68,7 @@ header a
     font-style: italic;
 }
 
-#nom_menu
+#menu_name
 {
     display :flex;
     flex-direction: column;
@@ -84,7 +84,7 @@ header a
     min-width: 10%;
 }
 
-#langue
+#language
 {
     color: white;
     border: white solid;
@@ -93,13 +93,13 @@ header a
     padding: 5px;
 }
 
-#calendrier
+#calendar
 {
     margin: 10px;
     text-align: center;
 }
 
-#horloge
+#clock
 {
     margin: 10px;
     text-align: center;
@@ -127,14 +127,14 @@ header a
     margin:auto;
 }
 
-section
+#main_content
 {
     display: flex;
     justify-content:space-around;
 }
 
 
-#partie_gauche
+#left_block
 {
 display: flex;
 flex-direction: column;
@@ -147,7 +147,7 @@ background-position-y: bottom;
 min-width: 70%;
 }
 
-.carrousel
+.carousel
 {
     display: block;
     justify-content: center;
@@ -157,7 +157,7 @@ min-width: 70%;
 }
 
 /*remplissage du cadre par la photo*/
-.carrousel_img
+.carousel_img
 {
     position: absolute;
     width: 570px;
@@ -165,7 +165,7 @@ min-width: 70%;
 }
     
 /* idem pour toutes les photos*/
-.carrousel_img img
+.carousel_img img
 {
     display: flex;
     align-items: center;
@@ -201,11 +201,11 @@ min-width: 70%;
     right: 0;
 }
     
-#i1:checked ~ #une,
-#i2:checked ~ #deux,
-#i3:checked ~ #trois,
-#i4:checked ~ #quatre,
-#i5:checked ~ #cinq
+#i1:checked ~ #one,
+#i2:checked ~ #two,
+#i3:checked ~ #three,
+#i4:checked ~ #four,
+#i5:checked ~ #five
 {
     z-index: 9;
 }
@@ -245,7 +245,7 @@ figcaption
     color:white;
 }
 
-#partie_droite
+#right_block
 {
     display:flex;
     flex-direction: column;
@@ -254,7 +254,7 @@ figcaption
     min-width: 30%;
 }
 
-#promotion
+#advertisement
 {
     max-width: 300px;
     border: 3px red solid;
@@ -268,7 +268,7 @@ figcaption
     text-align: center;
 }
 
-#location_rapide
+#quick_rent
 {
     margin: 5px;
     padding: 10px;
@@ -283,34 +283,81 @@ figcaption
     text-align: center;
     min-height: 200px;
 }
-#choix_vehicule
+#vehicle_choice
 {
     padding: 10px;
 }
 
-#choix_date
+#date_choice
 {
     padding-right: 10px;
     display: flex;
 }
 
-#depart
+#start
 {
     display: flex;
     flex-direction: column;
     padding-right: 5px;
 }
 
-#retour
+#back
 {
     display: flex;
     flex-direction: column;
     padding-left: 5px;
 }
 
-#reserver
+#book
 {
     padding: 20px;
+}
+
+.display_categories
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: 350px;
+}
+
+.display_categories h1
+{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.categories_strip
+{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.categories
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.categories_category
+{
+    border: black solid 2px;
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.categories_category img
+{
+    display: block;
+    width: 50%;
+    max-height: 50%;
+    max-width: 50%;
 }
 
 
@@ -331,7 +378,7 @@ footer a
     color:white;
 }
 
-.footer-bloc
+.footer-block
 {
     display: flex;
     flex-direction: column;
@@ -344,7 +391,7 @@ footer ul
     list-style-type: none;
 }
 
-#reseaux_sociaux
+#social_networks
 {
     display:flex;
     justify-content: space-between;

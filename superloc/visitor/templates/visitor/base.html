@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <title>{% block title %}SUPERLOC | Location de véhicules de tourisme et utilitaires{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'visitor/style.css' %}" />
+    </head>
+<body>
+    <header class=banner>
+        <div id="logo">
+            <a href="{% url 'visitor:home' %}" title="Accueil">
+            <img src="{% static 'visitor/images/logo.png' %}" alt="logo"></a>
+        </div>
+        <div id="contact">
+            Contactez-nous<br>
+            au<br>
+            <strong>0 810 24 24 24</strong><br>
+            gratuit<br>
+            + prix appel
+        </div>
+        <div id="menu_name">
+            <div id="company_name">
+                <b>SUPERLOC</b>
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="{% url 'visitor:tourism_categories' %}"><b>Catalogue</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Espace particuliers</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Espace pro</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Inscription</b></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="configuration">
+            <div id="language">
+                <b>FR</b>
+            </div>
+            <div id=calendar_clock>
+                <div id="clock">
+                    <script>
+                        window.onload=function() {
+                        horloge('clock');
+                        };
+                        function horloge(el) {
+                        if(typeof el=="string") { el = document.getElementById(el); }
+                        function actualiser() {
+                        var date = new Date();
+                        var str = date.getHours();
+                        str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
+                        str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+                        el.innerHTML = str;
+                        }
+                        actualiser();
+                        setInterval(actualiser,1000);
+                        }
+                    </script>
+                </div>
+                <div id="calendar">
+                    <script>
+                        var mydate=new Date()
+                        var year=mydate.getYear()
+                        if (year<2000)
+                        year += (year < 1900) ? 1900 : 0
+                        var day=mydate.getDay()
+                        var month=mydate.getMonth()
+                        var daym=mydate.getDate()
+                        if (daym<10)
+                        daym="0"+daym
+                        var dayarray=new Array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
+                        var montharray=new Array(" Janvier "," Février "," Mars ","Avril ","Mai ","Juin","Juillet ","Août ","Septembre "," Octobre "," Novembre "," Décembre ")
+                        document.write("   "+dayarray[day]+" "+daym+" "+montharray[month]+year+" ")
+                    </script>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        {% block content %}{% endblock %}
+
+    <footer class=banner>
+        <div class="footer-bloc">
+            <h1>Louer</h1>
+            <nav class="nav-footer" aria-label="Louer">
+                <ul class="nav-column">
+                    <li><a href="{% url 'visitor:todo' %}">Louer une voiture</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Louer un utilitaire</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-bloc">
+            <h1>Espace client</h1>
+            <nav class="nav-footer" aria-label="Espace client">
+                <ul class="nav-column">
+                    <li><a href="{% url 'visitor:todo' %}">Gérer vos réservations</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Imprimer une facture</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Conditions générales</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-bloc">
+            <h1>A propos</h1>
+            <nav class="nav-footer" aria-label="A propos">
+                <ul class="nav-column">
+                    <li><a href="{% url 'visitor:todo' %}">Notre entreprise</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Nos agences</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Nous contacter</a></li>
+                    <li><a href="{% url 'visitor:legal_notice' %}">Mentions légales</a></li>
+                </ul>
+            </nav>
+        </div>    
+        <div class="footer-block">
+            <h1>Suivez nous</h1>
+            <div id="social_networks">
+                <a href="http://www.facebook.com" title="Suivez nous sur Facebook" target="_blank"><img src="{% static 'visitor/icons/facebook.png' %}" alt="Facebook" /></a>
+                <a href="http://www.twitter.com" title="Suivez nous sur Twitter" target="_blank"><img src="{% static 'visitor/icons/twitter.png' %}" alt="Twitter" /></a>
+                <a href="http://www.instagram.com" title="Suivez nous sur Instagram" target="_blank"><img src="{% static 'visitor/icons/instagram.png' %}" alt="Instagram" /></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -319,7 +319,7 @@ figcaption
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    max-height: 350px;
+    max-height: 650px;
 }
 
 .display_categories h1
@@ -345,7 +345,7 @@ figcaption
 .categories_category
 {
     border: black solid 2px;
-    max-width: 25%;
+    max-width: 24%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

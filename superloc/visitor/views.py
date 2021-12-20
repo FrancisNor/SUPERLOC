@@ -12,6 +12,12 @@ def legal_notice(request) :
 def todo(request) :
     return render(request, 'visitor/todo.html')
 
+def login(request) :
+    return render(request, 'visitor/login.html')
+
+def inscription(request) :
+    return render(request, 'visitor/inscription.html')
+
 def tourism_categories(request):
     categories = Category.objects.all()
     context = {'category_list' : categories}

@@ -13,7 +13,6 @@
             {% for category in category_list %}
             <div class="categories_category">
                 <img src="{{category.image.url}}" alt="image" />
-                <h3>({{ category.code }}) {{category.label}}</h3>
                 <p>{{ category.sample }} ou équivalent</p>
                 <a href="{% url 'visitor:tourism_category' category.code %}">Voir détails</a>
             </div>

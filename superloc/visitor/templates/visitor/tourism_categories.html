@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+
+{% load static %}
+
+{% block title %}Nos véhicules de tourisme{% endblock %}
+
+{% block content %}
+<div class="display_categories">
+    {% load static %}
+    <h1>Nos véhicules de tourisme</h1>
+    <div class="categories_strip">
+        <div class = "categories">
+            {% for category in category_list %}
+            <div class="categories_category">
+                <img src="{{category.image.url}}" alt="image" />
+                <h3>({{ category.code }}) {{category.label}}</h3>
+                <p>{{ category.sample }} ou équivalent</p>
+                <a href="{% url 'visitor:tourism_category' category.code %}">Voir détails</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

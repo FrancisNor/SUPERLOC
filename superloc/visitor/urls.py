@@ -10,6 +10,6 @@ urlpatterns = [
     path('tourism/categories', views.tourism_categories, name = 'tourism_categories'),
     path('tourism/categories/<str:code>', views.tourism_category, name = 'tourism_category'),
     path('TODO', views.todo, name= 'todo'),
-    path('login', views.todo, name= 'login'),
-    path('inscription', views.todo, name= 'inscription'),
+    path('login', views.login, name= 'login'),
+    path('inscription', views.inscription, name= 'inscription'),
     ]

@@ -12,6 +12,9 @@ def legal_notice(request) :
 def todo(request) :
     return render(request, 'visitor/todo.html')
 
+def language_choice(request) :
+    return render(request, 'visitor/language_choice.html')
+
 def login(request) :
     return render(request, 'visitor/login.html')
 

@@ -12,4 +12,5 @@ urlpatterns = [
     path('TODO', views.todo, name= 'todo'),
     path('login', views.login, name= 'login'),
     path('inscription', views.inscription, name= 'inscription'),
+    path('language_choice', views.language_choice, name= 'language_choice'),
     ]

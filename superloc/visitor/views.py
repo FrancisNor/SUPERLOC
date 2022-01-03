@@ -1,7 +1,7 @@
 from django.shortcuts import render
+from django.http import Http404
 
-from visitor.models import Category
-from visitor.models import Agency
+from visitor.models import Category, Agency
 
 def home(request):
     return render(request, 'visitor/index.html')

@@ -11,9 +11,11 @@
         <div id="agencies">
             {% for agency in agency_list %}
             <div id="agency">
-                <p>{{ agency.name }}</p>
+                <p><b>{{agency.name}}</b></p>
                 <p>{{agency.address}}</p>
                 <p>{{agency.zip_code}} {{agency.city}}</p>
+                <p>{{agency.phone}}</p>
+                <p><a href="mailto:{{agency.email}}">Contacter cette agence</a></p>
             </div>
             {% endfor %}
         </div>

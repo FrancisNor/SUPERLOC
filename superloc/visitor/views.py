@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 from visitor.models import Category
+from visitor.models import Agency
 
 def home(request):
-    """User home page"""
     return render(request, 'visitor/index.html')
 
 def legal_notice(request) :
@@ -32,3 +32,8 @@ def tourism_category(request, code):
     except Category.DoesNotExist:
         raise Http404
     return render(request,'visitor/tourism_category.html', {'category': category})
+
+def agencies(request):
+    agencies = Agency.objects.all()
+    context = {'agency_list' : agencies}
+    return render(request, 'visitor/agencies.html', context)

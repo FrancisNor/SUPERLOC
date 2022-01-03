@@ -36,3 +36,16 @@ class Category(models.Model):
 
     def __str__(self):
         return '{} - {} - {} - {}'.format(self.id, self.code, self.label, self.sample)
+
+class Agency(models.Model):
+    name = models.CharField(max_length=30, unique=True)
+    address = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=5)
+    city = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Agence'
+        ordering = ['name']
+
+    def __str__(self):
+        return '{} - {} - {} - {}'.format(self.name, self.address, self.zip_code, self.city)

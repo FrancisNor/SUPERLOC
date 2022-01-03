@@ -353,12 +353,48 @@ figcaption
     max-width: 33%;
 }
 
+#display_agencies h1
+{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#agencies_strip
+{
+    width: 95%;
+}
+
+#agencies
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#agency
+{
+    text-align: center;
+    border: black solid 2px;
+    border-radius: 10px;
+    margin :5px;
+    padding: 10px;
+    width: 20%;
+    background-color: rgba(102, 169, 248, 0.94);
+    box-shadow: 3px 3px 3px gray;
+}
+
 #todo
 {
     text-align: center;
     color: white;
     font-size: 2em;
 }
+
+#legal_notice
+{
+    color: aliceblue;
+}
+
 
 #language_choice
 {

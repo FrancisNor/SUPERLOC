@@ -16,32 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `auth_user_groups`
+-- Table structure for table `visitor_vehicle`
 --
 
-DROP TABLE IF EXISTS `auth_user_groups`;
+DROP TABLE IF EXISTS `visitor_vehicle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `auth_user_groups` (
+CREATE TABLE `visitor_vehicle` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `group_id` int NOT NULL,
+  `car_model` varchar(50) DEFAULT NULL,
+  `manufacturer` varchar(50) NOT NULL,
+  `registration_number` varchar(9) NOT NULL,
+  `vehicle_identification_number` varchar(17) NOT NULL,
+  `agency_id` bigint NOT NULL,
+  `category_id` bigint NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
-  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
-  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `registration_number` (`registration_number`),
+  UNIQUE KEY `vehicle_identification_number` (`vehicle_identification_number`),
+  KEY `visitor_vehicle_agency_id_b65b99b8_fk_visitor_agency_id` (`agency_id`),
+  KEY `visitor_vehicle_category_id_ce4b6c0e_fk_visitor_category_id` (`category_id`),
+  CONSTRAINT `visitor_vehicle_agency_id_b65b99b8_fk_visitor_agency_id` FOREIGN KEY (`agency_id`) REFERENCES `visitor_agency` (`id`),
+  CONSTRAINT `visitor_vehicle_category_id_ce4b6c0e_fk_visitor_category_id` FOREIGN KEY (`category_id`) REFERENCES `visitor_category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_user_groups`
+-- Dumping data for table `visitor_vehicle`
 --
 
-LOCK TABLES `auth_user_groups` WRITE;
-/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
-INSERT INTO `auth_user_groups` VALUES (1,2,1),(3,3,1),(5,4,2),(6,5,2);
-/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+LOCK TABLES `visitor_vehicle` WRITE;
+/*!40000 ALTER TABLE `visitor_vehicle` DISABLE KEYS */;
+/*!40000 ALTER TABLE `visitor_vehicle` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-04 15:54:27
+-- Dump completed on 2022-01-04 15:54:26

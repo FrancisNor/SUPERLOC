@@ -22,7 +22,7 @@ def inscription(request) :
     return render(request, 'visitor/inscription.html')
 
 def tourism_categories(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(is_active=True)
     context = {'category_list' : categories}
     return render(request, 'visitor/tourism_categories.html', context)
 
@@ -34,6 +34,6 @@ def tourism_category(request, code):
     return render(request,'visitor/tourism_category.html', {'category': category})
 
 def agencies(request):
-    agencies = Agency.objects.all()
+    agencies = Agency.objects.filter(is_active=True)
     context = {'agency_list' : agencies}
     return render(request, 'visitor/agencies.html', context)

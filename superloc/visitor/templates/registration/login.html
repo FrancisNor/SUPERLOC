@@ -1,0 +1,21 @@
+{% extends 'visitor/base.html' %}
+
+{% block title %}SUPERLOC | Location de véhicules de tourisme et utilitaires{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'visitor:login' %}" method="post">
+
+    {{ form.as_p }}
+    {% csrf_token %}
+
+    <p><input type="submit" value="Log-in"></p>
+    <input type="hidden" name="next" value="{{ next }}"/>
+
+    <p>Pas de compte ? Vous pouvez vous
+        <a href="{% url 'visitor:inscription' %}?next={{ next }}"> enregistrer</a>
+    </p>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'visitor/base.html' %}
+
+{% block title %}SUPERLOC | Location de véhicules de tourisme et utilitaires{% endblock %}
+
+{% block content %}
+
+    <h1>Bienvenue {{ new_user.first_name }}!</h1>
+    <p>Votre compte a été créé. Vous pouvez maintenant vous
+        <a href="{% url "rental:login" %}?next={{ request.next }}">connecter</a>.</p>
+            
+{% endblock %}

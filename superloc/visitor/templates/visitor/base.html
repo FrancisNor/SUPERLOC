@@ -34,43 +34,14 @@
         </div>
         <div id="configuration">
             <div id="language">
-                <b>FR</b>
+                <a href="{% url 'visitor:language_choice' %}"><b>FR</b></a>
             </div>
             <div id=calendar_clock>
                 <div id="clock">
-                    <script>
-                        window.onload=function() {
-                        horloge('clock');
-                        };
-                        function horloge(el) {
-                        if(typeof el=="string") { el = document.getElementById(el); }
-                        function actualiser() {
-                        var date = new Date();
-                        var str = date.getHours();
-                        str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
-                        str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
-                        el.innerHTML = str;
-                        }
-                        actualiser();
-                        setInterval(actualiser,1000);
-                        }
-                    </script>
+                    {% now "H:i" %}
                 </div>
                 <div id="calendar">
-                    <script>
-                        var mydate=new Date()
-                        var year=mydate.getYear()
-                        if (year<2000)
-                        year += (year < 1900) ? 1900 : 0
-                        var day=mydate.getDay()
-                        var month=mydate.getMonth()
-                        var daym=mydate.getDate()
-                        if (daym<10)
-                        daym="0"+daym
-                        var dayarray=new Array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
-                        var montharray=new Array(" Janvier "," Février "," Mars ","Avril ","Mai ","Juin","Juillet ","Août ","Septembre "," Octobre "," Novembre "," Décembre ")
-                        document.write("   "+dayarray[day]+" "+daym+" "+montharray[month]+year+" ")
-                    </script>
+                    {% now "l j F Y" %}
                 </div>
             </div>
         </div>
@@ -103,7 +74,7 @@
             <nav class="nav-footer" aria-label="A propos">
                 <ul class="nav-column">
                     <li><a href="{% url 'visitor:todo' %}">Notre entreprise</a></li>
-                    <li><a href="{% url 'visitor:todo' %}">Nos agences</a></li>
+                    <li><a href="{% url 'visitor:agencies' %}">Nos agences</a></li>
                     <li><a href="{% url 'visitor:todo' %}">Nous contacter</a></li>
                     <li><a href="{% url 'visitor:legal_notice' %}">Mentions légales</a></li>
                 </ul>

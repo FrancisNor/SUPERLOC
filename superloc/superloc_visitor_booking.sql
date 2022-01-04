@@ -16,32 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `auth_user_groups`
+-- Table structure for table `visitor_booking`
 --
 
-DROP TABLE IF EXISTS `auth_user_groups`;
+DROP TABLE IF EXISTS `visitor_booking`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `auth_user_groups` (
+CREATE TABLE `visitor_booking` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `group_id` int NOT NULL,
+  `date_start` datetime(6) NOT NULL,
+  `scheduled_date_end` datetime(6) NOT NULL,
+  `date_end` datetime(6) NOT NULL,
+  `agence_id` bigint NOT NULL,
+  `customer_id` bigint NOT NULL,
+  `vehicle_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
-  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
-  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `visitor_booking_agence_id_20bf1025_fk_visitor_agency_id` (`agence_id`),
+  KEY `visitor_booking_customer_id_7e7070da_fk_visitor_customer_id` (`customer_id`),
+  KEY `visitor_booking_vehicle_id_dd850650_fk_visitor_vehicle_id` (`vehicle_id`),
+  CONSTRAINT `visitor_booking_agence_id_20bf1025_fk_visitor_agency_id` FOREIGN KEY (`agence_id`) REFERENCES `visitor_agency` (`id`),
+  CONSTRAINT `visitor_booking_customer_id_7e7070da_fk_visitor_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `visitor_customer` (`id`),
+  CONSTRAINT `visitor_booking_vehicle_id_dd850650_fk_visitor_vehicle_id` FOREIGN KEY (`vehicle_id`) REFERENCES `visitor_vehicle` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_user_groups`
+-- Dumping data for table `visitor_booking`
 --
 
-LOCK TABLES `auth_user_groups` WRITE;
-/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
-INSERT INTO `auth_user_groups` VALUES (1,2,1),(3,3,1),(5,4,2),(6,5,2);
-/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+LOCK TABLES `visitor_booking` WRITE;
+/*!40000 ALTER TABLE `visitor_booking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `visitor_booking` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-04 15:54:27
+-- Dump completed on 2022-01-04 15:54:28

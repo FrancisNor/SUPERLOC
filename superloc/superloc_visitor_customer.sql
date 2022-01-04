@@ -16,32 +16,40 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `auth_user_groups`
+-- Table structure for table `visitor_customer`
 --
 
-DROP TABLE IF EXISTS `auth_user_groups`;
+DROP TABLE IF EXISTS `visitor_customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `auth_user_groups` (
+CREATE TABLE `visitor_customer` (
   `id` bigint NOT NULL AUTO_INCREMENT,
+  `client_type` varchar(3) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `zipcode` varchar(5) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `licence_scan` varchar(100) NOT NULL,
+  `licence_number` varchar(12) NOT NULL,
+  `receiveAdds` tinyint(1) NOT NULL,
+  `creditCardNumber` varchar(16) NOT NULL,
+  `creditCardValidity` date NOT NULL,
   `user_id` int NOT NULL,
-  `group_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
-  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
-  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `user_id` (`user_id`),
+  CONSTRAINT `visitor_customer_user_id_87b3f5d0_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_user_groups`
+-- Dumping data for table `visitor_customer`
 --
 
-LOCK TABLES `auth_user_groups` WRITE;
-/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
-INSERT INTO `auth_user_groups` VALUES (1,2,1),(3,3,1),(5,4,2),(6,5,2);
-/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+LOCK TABLES `visitor_customer` WRITE;
+/*!40000 ALTER TABLE `visitor_customer` DISABLE KEYS */;
+INSERT INTO `visitor_customer` VALUES (1,'PRI','1968-01-01','6 rue de la République','69001','LOS ANGELES','0758634510','customer_licences/nuage-de-mots_2.png','12155468545',1,'4972015847520159','2023-09-01',6);
+/*!40000 ALTER TABLE `visitor_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-04 15:54:27
+-- Dump completed on 2022-01-04 15:54:25

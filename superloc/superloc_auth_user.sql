@@ -36,7 +36,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$260000$MKZTMRIGohrEBKiAR7vwKw$P5SQG009qfHDiH6ByKzpbQYoii1CUII6mbOsPwk/YhU=','2022-01-03 14:56:54.553548',1,'admin','','','admin@superloc.com',1,1,'2022-01-03 10:51:36.047354');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$260000$MKZTMRIGohrEBKiAR7vwKw$P5SQG009qfHDiH6ByKzpbQYoii1CUII6mbOsPwk/YhU=','2022-01-04 15:33:48.213342',1,'admin','','','admin@superloc.com',1,1,'2022-01-03 10:51:36.047354'),(2,'pbkdf2_sha256$260000$wrc8P0NJ2jPW85I3ddeVjN$QwFOsA6Icb9IbA7eUy5bkkeRDqMS1iIm68cLqhlQSTo=','2022-01-03 22:37:15.827470',0,'benoit.wiedemann@superloc.com','Benoît','Wiedemann','benoit.wiedemann@superloc.com',1,1,'2022-01-03 17:30:27.000000'),(3,'pbkdf2_sha256$260000$jIwPGMn0Iv6LzB97jFNQqv$t97wB2cKok4shoGquLbl+q4QmKCcNsWJmunVzG6nUQQ=',NULL,0,'francis.norguet@superloc.com','Francis','Norguet','francis.norguet@superloc.com',1,1,'2022-01-03 18:08:46.000000'),(4,'pbkdf2_sha256$260000$wZq1xN6GRhuSkTtRGswvci$lDUUGj7BgIwjVH/V6WfYt4DcM6Cs8cHipiAtSr8QTgQ=','2022-01-03 23:52:43.477768',0,'frederic.gedin@superloc.com','Frédéric','Gédin','frederic.gedin@superloc.com',1,1,'2022-01-03 18:11:43.000000'),(5,'pbkdf2_sha256$260000$lTuLYwATvvtaRXnkMZ5jYQ$CuW/kPbNG0L6ygi6i6fTl7JyYcF+0gri0KD/lAnT400=',NULL,0,'nassim.benouna@superloc.com','Nassim','Benouna','nassim.benouna@superloc.com',1,1,'2022-01-03 18:12:44.000000'),(6,'pbkdf2_sha256$260000$K6JMrp8k9ZHOhQTuZSJaTS$Mnu59JkjaM2gu+WPQbsYl9iHTyn/+1opDCfAQl7V4XU=',NULL,0,'leonardo.dicaprio@orange.fr','','','',0,1,'2022-01-04 15:34:54.204381');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-03 16:55:34
+-- Dump completed on 2022-01-04 15:54:29

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'common/css/style.css' %}"/>
+    <title>{% block title %}PyLOC Manager{% endblock %}</title>
+</head>
+<body>
+<header class="banner">
+    <div id="logo"><a href="{% url 'manager:home' %}">PyLOC</a></div>
+    <div id="icons-and-menus">
+        <div id="icons">
+            {% if request.user.is_authenticated %}
+                {{ request.user.first_name }} {{ request.user.last_name }}
+                <a href="{% url 'manager:logout' %}?next={% url 'manager:logged_out' %}">
+                    <img id="logout" class="toolbar-icon"
+                         src="{% static 'common/icons/logout.png' %}"
+                         alt="Logout"/>
+                </a>
+            {% else %}
+                <a href="{% url 'manager:login' %}?next={{ request.path }}">
+                    <img id="login" class="toolbar-icon"
+                         src="{% static 'common/icons/login.png' %}"
+                         alt="Login"/>
+                </a>
+            {% endif %}
+        </div>
+        <nav id="main-menu" aria-label="Menu principal">
+            <ul>
+                <li><a href="{% url 'manager:vehicles' %}">Véhicules</a></li>
+                <li><a href="{% url 'manager:agencies' %}">Agences</a></li>
+                <li><a href="{% url 'manager:customers' %}">Clients</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section>
+    <div>{% block content %}{% endblock %}</div>
+</section>
+</body>
+</html>

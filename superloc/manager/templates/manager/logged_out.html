@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Logged out{% endblock %}
+{% block content %}
+    <div id="home-main-content">
+        <h1>Veuillez vous <a href="{% url 'manager:login' %}?next={% url 'manager:home' %}">connecter</a>
+            pour accéder aux pages gestionnaire</h1>
+    </div>
+{% endblock %}

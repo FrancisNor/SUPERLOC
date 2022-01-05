@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import Http404
+from django.contrib import messages
 
-from visitor.models import Category, Agency
+from visitor.models import Category, Agency, Customer
+from visitor.forms import UserRegistrationForm
 
 def home(request):
     return render(request, 'visitor/index.html')
@@ -17,12 +19,6 @@ def language_choice(request) :
 
 def login(request) :
     return render(request, 'registration/login.html')
-
-def inscription(request) :
-    return render(request, 'registration/inscription.html')
-
-def inscription_done(request) :
-   return render(request, 'registration/inscription_done.html')
 
 def tourism_categories(request):
     categories = Category.objects.filter(is_active=True)
@@ -41,7 +37,7 @@ def agencies(request):
     context = {'agency_list' : agencies}
     return render(request, 'visitor/agencies.html', context)
 
-def register(request):
+def inscription(request):
     next_page = request.GET.get('next', '')
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)

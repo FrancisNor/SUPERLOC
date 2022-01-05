@@ -14,7 +14,6 @@ urlpatterns = [
     path('TODO', views.todo, name= 'todo'),
     path('login', auth_views.LoginView.as_view(), name= 'login'),
     path('inscription', views.inscription, name= 'inscription'),
-    path('inscription_done', views.inscription, name= 'inscription_done'),
     path('language_choice', views.language_choice, name= 'language_choice'),
     path('agencies', views.agencies, name= 'agencies'),
     ]

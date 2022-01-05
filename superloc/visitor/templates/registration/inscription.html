@@ -3,5 +3,12 @@
 {% block title %}SUPERLOC | Location de véhicules de tourisme et utilitaires{% endblock %}
 
 {% block content %}
-inscription
+
+    <h1>Mon compte rental</h1>
+        <form method="post">
+            {{ user_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Créer mon compte"></p>
+        </form>
+        
 {% endblock %}

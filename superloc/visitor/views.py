@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from visitor.models import Category, Agency, Customer
-from visitor.forms import UserRegistrationForm
+from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm
 
 def home(request):
     return render(request, 'visitor/index.html')
@@ -59,3 +60,21 @@ def inscription(request):
         user_form = UserRegistrationForm()
         return render(request, 'registration/inscription.html',
                       {'user_form': user_form, 'next': next_page})
+
+
+@login_required
+def edit_customer(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)
+        customer_form = CustomerEditForm(request.POST, instance=request.user.customer, files=request.FILES)
+        if user_form.is_valid() and customer_form.is_valid():
+            user_form.save()
+            customer_form.save()
+            next_page = request.GET.get('next')
+            return redirect(next_page)
+    else:
+        user_form = UserEditForm(instance=request.user)
+        customer_form = CustomerEditForm(instance=request.user.customer)
+        next_page = request.GET.get('next')
+        return render(request, 'visitor/edit_customer.html',
+                      {'user_form': user_form, 'customer_form': customer_form, 'next': next_page})

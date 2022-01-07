@@ -79,16 +79,19 @@ CLIENT_CHOICES = (
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     client_type = models.CharField('Type de client', max_length=3, choices=CLIENT_CHOICES, default='PRI')
-    date_of_birth = models.DateField('Date de naissance', null=False)
-    address = models.CharField('Adresse', max_length=100, null=False)
-    zipcode = models.CharField('Code postal', max_length=5, null=False)
-    city = models.CharField('Ville', max_length=50, null=False)
-    phone = models.CharField('Téléphone', max_length=10, null=False)
-    licence_scan = models.ImageField('Copie permis de conduire', upload_to='customer_licences', blank=False)
-    licence_number = models.CharField('Numéro du permis de conduire', max_length=12, null=False)
+    date_of_birth = models.DateField('Date de naissance', null=True)
+    address = models.CharField('Adresse', max_length=100, null=True)
+    zipcode = models.CharField('Code postal', max_length=5, null=True)
+    city = models.CharField('Ville', max_length=50, null=True)
+    phone = models.CharField('Téléphone', max_length=10, null=True)
+    licence_scan = models.ImageField('Copie permis de conduire', upload_to='customer_licences', blank=True)
+    licence_number = models.CharField('Numéro du permis de conduire', max_length=12, null=True)
     receiveAdds = models.BooleanField('Accepte de recevoir de la publicité ?', default=True)
-    creditCardNumber = models.CharField('Numéro de carte de paiement', max_length=16, null=False)
-    creditCardValidity = models.DateField('Fin de validité de la carte de paiement', null=False)
+    creditCardNumber = models.CharField('Numéro de carte de paiement', max_length=16, null=True)
+    creditCardValidity = models.DateField('Fin de validité de la carte de paiement', null=True)
+
+    def __str__(self):
+        return f'Customer {self.user.username}'
 
 class Booking(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)

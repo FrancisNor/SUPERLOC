@@ -1,0 +1,42 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Disponibilité des véhicules{% endblock %}
+
+{% block content %}
+<h1>Disponibilité des véhicules</h1>
+<p>Agence de <b>{{agency.name}}</b></p>
+
+
+<table>
+    <tr>
+        <th>
+            Catégorie
+        </th>
+        <th>
+            Marque
+        </th>
+        <th>
+            Modèle
+        </th>
+        <th>
+            Immatriculation
+        </th>
+    </tr>
+    {% for vehicle in vehicle_list %}
+    <tr>
+        <td>
+            {{vehicle.category}}
+        </td>
+        <td>
+            {{vehicle.manufacturer}}
+        </td>
+        <td>
+            {{vehicle.car_model}}
+        </td>
+        <td>
+            {{vehicle.registration_number}}
+        </td>
+    </tr>
+        {% endfor %}
+</table>
+{% endblock %}

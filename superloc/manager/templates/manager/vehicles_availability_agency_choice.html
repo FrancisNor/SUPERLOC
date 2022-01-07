@@ -1,0 +1,23 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Disponibilité des véhicules{% endblock %}
+
+{% block content %}
+<h1>Disponibilité des véhicules</h1>
+<form action="" method="get">
+  {{ form.as_p }}
+  <input type="submit" value="Vérifier les disponibilités">
+</form>
+{% endblock %}
+<!--
+Lien ne fonctionne pas
+
+<form action="{% url 'manager:vehicles_availability' agency.id %}" method="get">
+  {{ form.as_p }}
+  <input type="submit" value="Vérifier les disponibilités">
+</form>
+-->
+<!--
+Voir
+https://askcodez.com/django-liste-deroulante-des-modeles-stockes.html
+-->

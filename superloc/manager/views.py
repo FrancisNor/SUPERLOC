@@ -5,18 +5,14 @@ from django.http import Http404
 from visitor.models import Vehicle, Booking, Agency
 from .forms import GetAgencyForm, VehicleAddForm
 
-"""
 class LoginManager(LoginView):
     template_name = 'manager/login.html'
+
 
 def role_check(user):
     return user.groups.filter(name='manager').exists()
 
-@login_required(login_url='manager:login')
-@user_passes_test(role_check, login_url='manager:forbidden')
-def home(request):
-    return render(request, 'manager/index.html')
-
+"""
 @login_required(login_url='manager:login')
 @permission_required('rental.change_agency', raise_exception=True)
 def agencies_home(request):
@@ -27,12 +23,16 @@ def logged_out(request):
 from django.shortcuts import render
 """
 
-#@login_required(login_url='manager:login')
+@login_required(login_url='manager:login')
+#@user_passes_test(role_check, login_url='manager:forbidden')
 def home(request):
     return render(request, 'manager/index.html')
 
 #@login_required(login_url='manager:login')
 def vehicles_availability_agency_choice(request):
+    if request.method == 'POST':
+         agency = request.POST.get('name')
+         return redirect('manager:vehicles_availability', agency)
     get_agency_form=GetAgencyForm()
     context= {'form': get_agency_form}
     return render(request, 'manager/vehicles_availability_agency_choice.html', context)

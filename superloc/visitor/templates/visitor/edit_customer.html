@@ -1,0 +1,12 @@
+{% extends "visitor/base.html" %}
+{% block title %}Modifier votre compte{% endblock %}
+{% block content %}
+    <h1>Modifier votre compte</h1>
+    <form method="post" enctype="multipart/form-data">
+        {{ user_form.as_p }}
+        {{ customer_form.as_p }}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <p><input type="submit" value="Save changes"></p>
+    </form>
+{% endblock %}

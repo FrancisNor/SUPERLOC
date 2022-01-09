@@ -6,6 +6,6 @@
 
     <h1>Bienvenue {{ new_user.first_name }}!</h1>
     <p>Votre compte a été créé. Vous pouvez maintenant vous
-        <a href="{% url "rental:login" %}?next={{ request.next }}">connecter</a>.</p>
+        <a href="{% url 'visitor:login' %}?next={{ request.next }}">connecter</a>.</p>
             
 {% endblock %}

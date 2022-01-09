@@ -11,13 +11,23 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'last_name', 'first_name', 'email')
-    
-    
-        model = Customer
-        fields = ('client_type','date_of_birth','address','zipcode','city','phone','licence_scan','licence_number','receiveAdds','creditCardNumber','creditCardValidity',)
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Les mots de passe ne correspondent pas')
         return cd['password2']
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+
+class CustomerEditForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ('licence_scan', 'licence_number', 'address', 'zipcode', 'city', 'phone', 'date_of_birth')
+       
+        #fields = ('client_type','date_of_birth','address','zipcode','city','phone','licence_scan','licence_number','receiveAdds','creditCardNumber','creditCardValidity',)

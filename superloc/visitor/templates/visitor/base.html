@@ -33,6 +33,22 @@
             </nav>
         </div>
         <div id="configuration">
+            <div id="log">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'visitor:edit_customer' %}?next={{ request.path }}">
+                        {{ request.user.first_name }} {{ request.user.last_name }}
+                    </a>
+                    <a href="{% url 'visitor:logout' %}?next={{ request.path }}">
+                        <img id="logout" class="toolbar-icon"
+                             alt="Se déconnecter"/>
+                    </a>
+                {% else %}
+                    <a href="{% url 'visitor:login' %}?next={{ request.path }}">
+                        <img id="login" class="toolbar-icon"
+                             alt="Se connecter/S'inscrire"/>
+                    </a>
+                {% endif %}
+            </div>
             <div id="language">
                 <a href="{% url 'visitor:language_choice' %}"><b>FR</b></a>
             </div>

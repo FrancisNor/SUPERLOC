@@ -409,6 +409,15 @@ figcaption
     max-width: 200px;
 }
 
+table
+{
+    border-collapse: collapse;
+}
+td
+{
+    border: 1px solid black;
+}
+
 footer
 {
     display: flex;

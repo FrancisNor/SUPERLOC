@@ -92,8 +92,8 @@ class Customer(models.Model):
 
 class Booking(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.PROTECT)
-    agence = models.ForeignKey(Agency, on_delete=models.PROTECT)
+    agency = models.ForeignKey(Agency, on_delete=models.PROTECT)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
-    date_start = models.DateTimeField()
-    scheduled_date_end = models.DateTimeField()
-    date_end = models.DateTimeField()
+    date_start = models.DateTimeField('Date de début de location')
+    scheduled_date_end = models.DateTimeField('Date prévue de fin de location')
+    date_end = models.DateTimeField('Date de fin de location')

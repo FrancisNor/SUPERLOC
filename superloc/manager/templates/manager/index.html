@@ -1,7 +1,10 @@
 {% extends "visitor/base.html" %}
 
-{% block title %}PyLOC manager{% endblock %}
+{% block title %}SUPERLOC | Manager{% endblock %}
 
 {% block content %}
-    Manager index page
+<h1>Manager</h1>
+<p><a href="{% url 'manager:vehicles_availability_agency_choice' %}">Consultation de la disponibilité des véhicules</a></p>
+<p><a href="{% url 'manager:vehicles_management_agency_choice' %}">Gestion des véhicules</a></p>
+<p>Gestion des réservations</p>
 {% endblock %}

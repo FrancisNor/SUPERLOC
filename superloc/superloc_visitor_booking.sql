@@ -27,14 +27,14 @@ CREATE TABLE `visitor_booking` (
   `date_start` datetime(6) NOT NULL,
   `scheduled_date_end` datetime(6) NOT NULL,
   `date_end` datetime(6) NOT NULL,
-  `agence_id` bigint NOT NULL,
+  `agency_id` bigint NOT NULL,
   `customer_id` bigint NOT NULL,
   `vehicle_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `visitor_booking_agence_id_20bf1025_fk_visitor_agency_id` (`agence_id`),
   KEY `visitor_booking_customer_id_7e7070da_fk_visitor_customer_id` (`customer_id`),
   KEY `visitor_booking_vehicle_id_dd850650_fk_visitor_vehicle_id` (`vehicle_id`),
-  CONSTRAINT `visitor_booking_agence_id_20bf1025_fk_visitor_agency_id` FOREIGN KEY (`agence_id`) REFERENCES `visitor_agency` (`id`),
+  KEY `visitor_booking_agency_id_2ca75dad_fk_visitor_agency_id` (`agency_id`),
+  CONSTRAINT `visitor_booking_agency_id_2ca75dad_fk_visitor_agency_id` FOREIGN KEY (`agency_id`) REFERENCES `visitor_agency` (`id`),
   CONSTRAINT `visitor_booking_customer_id_7e7070da_fk_visitor_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `visitor_customer` (`id`),
   CONSTRAINT `visitor_booking_vehicle_id_dd850650_fk_visitor_vehicle_id` FOREIGN KEY (`vehicle_id`) REFERENCES `visitor_vehicle` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-04 15:54:28
+-- Dump completed on 2022-01-07  8:56:56

@@ -1,0 +1,55 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Gestion des véhicules{% endblock %}
+
+{% block content %}
+<h1>Gestion des véhicules</h1>
+<p>Agence de <b>{{agency.name}}</b></p>
+
+
+<table>
+    <tr>
+        <th>
+            Catégorie
+        </th>
+        <th>
+            Marque
+        </th>
+        <th>
+            Modèle
+        </th>
+        <th>
+            Immatriculation
+        </th>
+        <th>
+        </th>
+    </tr>
+    {% for vehicle in vehicle_list %}
+    <tr>
+        <td>
+            {{vehicle.category}}
+        </td>
+        <td>
+            {{vehicle.manufacturer}}
+        </td>
+        <td>
+            {{vehicle.car_model}}
+        </td>
+        <td>
+            {{vehicle.registration_number}}
+        </td>
+        <td>
+            <form>
+                <input type="submit" value="Désaffecter le véhicule {{vehicle.id}}">
+            </form>
+
+        </td>
+    </tr>
+        {% endfor %}
+</table>
+<p>
+    <form>
+        <input type="submit" value="Ajouter un véhicule à l'agence {{agency.id}}">
+    </form>
+</p>
+{% endblock %}

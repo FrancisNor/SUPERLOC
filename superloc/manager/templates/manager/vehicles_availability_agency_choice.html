@@ -1,12 +1,14 @@
-{% extends "visitor/base.html" %}
+{% extends "manager/base.html" %}
 
 {% block title %}SUPERLOC | Disponibilité des véhicules{% endblock %}
 
 {% block content %}
-<h1>Disponibilité des véhicules</h1>
-<form action="{% url 'manager:vehicles_availability_agency_choice' %}" method="post">
-  {%csrf_token%}
-  {{ form.as_p }}
-  <input type="submit" value="Vérifier les disponibilités">
-</form>
+<div>
+  <h1>Disponibilité des véhicules</h1>
+  <form action="{% url 'manager:vehicles_availability_agency_choice' %}" method="post">
+    {%csrf_token%}
+    {{ form.as_p }}
+    <input type="submit" value="Vérifier les disponibilités">
+  </form>
+</div>
 {% endblock %}

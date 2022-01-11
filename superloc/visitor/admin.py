@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Category, Agency, Vehicle, Customer
+from .models import Category, Agency
+#from django.contrib.auth.models import User
+
 
 @admin.register(Agency)
 class AgencyAdmin(admin.ModelAdmin):
@@ -11,18 +13,13 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('code', 'sample', 'nb_seats', 'nb_doors', 'gear', 'energy', 'winter', 'is_active')
     list_filter = ('code', 'gear')
 
-'''
-TODO : supprimer vues administration Véhicule et client
-'''
+#from django.contrib.auth.models import Permission
+#@admin.register(Permission)
+#    list_display = ('id')
+#    list_filter = ('id')
 
-@admin.register(Vehicle)
-class VehicleAdmin(admin.ModelAdmin):
-    list_display = ('manufacturer', 'car_model', 'registration_number', 'is_active')
-
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('address', 'city')
-
-'''
-TODO : supprimer vues administration Véhicule et client
-'''
+#@admin.register(User)
+#class UserAdmin(admin.ModelAdmin):
+#    list_filter = (
+#        ('is_staff', admin.BooleanFieldListFilter),
+#    )

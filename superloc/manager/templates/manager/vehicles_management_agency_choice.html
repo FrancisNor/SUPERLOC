@@ -1,12 +1,14 @@
-{% extends "visitor/base.html" %}
+{% extends "manager/base.html" %}
 
 {% block title %}SUPERLOC | Gestion des véhicules{% endblock %}
 
 {% block content %}
-<h1>Gestion des véhicules</h1>
-<form action="{% url 'manager:vehicles_management_agency_choice' %}" method="post">
-  {%csrf_token%}
-  {{ form.as_p }}
-  <input type="submit" value="Gérer les véhicules">
-</form>
+</div>
+  <h1>Gestion des véhicules</h1>
+  <form action="{% url 'manager:vehicles_management_agency_choice' %}" method="post">
+    {%csrf_token%}
+    {{ form.as_p }}
+    <input type="submit" value="Gérer les véhicules">
+  </form>
+</div>
 {% endblock %}

@@ -1,10 +1,9 @@
-{% extends 'visitor/base.html' %}
+{% extends 'manager/base.html' %}
 
-{% block title %}SUPERLOC | Déconnecté{% endblock %}
+{% block title %}SUPERLOC | Manager{% endblock %}
 
 {% block content %}
-    <div id="home-main-content">
-        <h1>Veuillez vous <a href="{% url 'manager:login' %}?next={% url 'manager:home' %}">connecter</a>
-            pour accéder aux pages gestionnaire</h1>
+    <div>
+        <h1>Veuillez vous <a href="{% url 'manager:login' %}?next={% url 'manager:home' %}">connecter</a>pour accéder aux pages gestionnaire</h1>
     </div>
 {% endblock %}

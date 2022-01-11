@@ -57,7 +57,13 @@ header a
     overflow: hidden;
     min-width: 10%;
 }
-
+#contact_manager
+{
+    align-items: center;
+    height: 100px;
+    padding: 5px;
+    min-width: 10%;
+}
 #company_name
 {
     display: flex;
@@ -283,15 +289,30 @@ figcaption
     text-align: center;
     min-height: 200px;
 }
+
 #vehicle_choice
 {
     padding: 10px;
 }
-
+/*
 #date_choice
 {
+    border : 5px black;
     padding-right: 10px;
     display: flex;
+}
+
+#agency_choice
+{
+    border : 5 px red;
+    padding-right: 10px;
+    display: flex;
+}
+*/
+#date_agency
+{
+    display: flex;
+    flex-direction: row;
 }
 
 #start

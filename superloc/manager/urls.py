@@ -11,7 +11,8 @@ def permission_denied_view(request):
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('login', views.LoginManager.as_view(), name='login'),
+    path('login/', views.LoginManager.as_view(), name='login'),
+    path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('403', permission_denied_view, name='forbidden'),    
     path('vehicles_availability_agency_choice', views.vehicles_availability_agency_choice, name='vehicles_availability_agency_choice'),
     path('vehicles_availability/<str:id>', views.vehicles_availability, name='vehicles_availability'),
@@ -20,10 +21,3 @@ urlpatterns = [
     path('vehicles_management/vehicle_add/<str:id>', views.vehicle_add, name='vehicle_add'),
     path('vehicles_management/vehicle_delete/<str:id>', views.vehicle_delete, name='vehicle_delete'),
 ]
-"""
-    path('logged_out', views.logged_out, name='logged_out'),
-    
-    path('logout', auth_views.LogoutView.as_view(),
-         {'next_page': 'logged_out'}, name='logout'),
-    
-"""

@@ -409,13 +409,16 @@ figcaption
     max-width: 200px;
 }
 
-table
+#manager_table
 {
     border-collapse: collapse;
+    padding: 10px;
 }
-td
+
+#column_manager_table
 {
     border: 1px solid black;
+    width: 15%
 }
 
 footer

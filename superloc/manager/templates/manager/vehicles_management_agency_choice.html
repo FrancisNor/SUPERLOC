@@ -4,17 +4,9 @@
 
 {% block content %}
 <h1>Gestion des véhicules</h1>
-<form action="" method="get">
+<form action="{% url 'manager:vehicles_management_agency_choice' %}" method="post">
+  {%csrf_token%}
   {{ form.as_p }}
   <input type="submit" value="Gérer les véhicules">
 </form>
 {% endblock %}
-
-<!--
-Lien ne fonctionne pas
-
-<form action="{% url 'manager:vehicles_management' agency.id %}" method="get">
-  {{ form.as_p }}
-  <input type="submit" value="Gérer les véhicules">
-</form>
--->

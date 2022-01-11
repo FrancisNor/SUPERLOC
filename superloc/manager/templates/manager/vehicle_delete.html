@@ -1,0 +1,13 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Gestion des véhicules{% endblock %}
+
+{% block content %}
+<h1>Gestion des véhicules</h1>
+<p>Etes-vous certain de vouloir supprimer le véhicule suivant ?</p>
+<p>{{vehicle.manufacturer}} <b>{{vehicle.car_model}}</b> immatriculé <b>{{vehicle.registration_number}}</b></p>
+<form action="" method="post">
+     {%csrf_token%}
+    <input type="submit" value="Supprimer ce véhicule">
+</form>
+{% endblock %}

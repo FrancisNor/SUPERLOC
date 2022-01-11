@@ -17,8 +17,8 @@ urlpatterns = [
     path('vehicles_availability/<str:id>', views.vehicles_availability, name='vehicles_availability'),
     path('vehicles_management_agency_choice', views.vehicles_management_agency_choice, name='vehicles_management_agency_choice'),
     path('vehicles_management/<str:id>', views.vehicles_management, name='vehicles_management'),
-    path('vehicles_management_vehicle_add', views.vehicles_management_vehicle_add, name='vehicles_management_vehicle_add'),
-    
+    path('vehicles_management/vehicle_add/<str:id>', views.vehicle_add, name='vehicle_add'),
+    path('vehicles_management/vehicle_delete/<str:id>', views.vehicle_delete, name='vehicle_delete'),
 ]
 """
     path('logged_out', views.logged_out, name='logged_out'),

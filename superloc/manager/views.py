@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test, per
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.http import Http404
-from visitor.models import Vehicle, Booking, Agency
+from visitor.models import Category, Vehicle, Booking, Agency
 from .forms import GetAgencyForm, VehicleAddForm
 
 class LoginManager(LoginView):
@@ -52,8 +52,11 @@ def vehicles_availability(request, id) :
 
 #@login_required(login_url='manager:login')
 def vehicles_management_agency_choice(request):
-    get_agency_form=GetAgencyForm()
-    context= {'form': get_agency_form}
+    if request.method == 'POST':
+        agency = request.POST.get('name')
+        return redirect('manager:vehicles_management', agency)
+    get_agency_form = GetAgencyForm()
+    context = {'form': get_agency_form}
     return render(request, 'manager/vehicles_management_agency_choice.html', context)
 
 #@login_required(login_url='manager:login')
@@ -69,12 +72,36 @@ def vehicles_management(request, id) :
     return render(request, 'manager/vehicles_management.html', context)
 
 #@login_required(login_url='manager:login')
-def vehicles_management_vehicle_add(request):
-    vehicle_add_form=VehicleAddForm()
+def vehicle_delete(request, id) :
+    try:
+        vehicle = Vehicle.objects.get(id__exact=id.upper())
+    except Vehicle.DoesNotExist:
+        raise Http404
     if request.method == 'POST':
-        vehicle_add_form = VehicleAddForm(request.POST)
-        if vehicle_add_form.is_valid():
-            vehicle_add_form.save()
-            return redirect('manager:vehicles_management')
-    context= {'form': vehicle_add_form}
-    return render(request, 'manager/vehicles_management_vehicle_add.html', context)
+        vehicle=Vehicle.objects.get(id=id)
+        vehicle.is_active = False
+        vehicle.save()
+        return render(request, 'manager/index.html')
+    #Ajouter une règle pour vérifier qu'il n'y a pas de réservation prévue ou en cours?
+    #Ajouter redirection vers Gestion des véhicules
+    return render(request, 'manager/vehicle_delete.html', {'vehicle': vehicle})
+
+#@login_required(login_url='manager:login')
+def vehicle_add(request,id):
+    try:
+        agency = Agency.objects.get(id__exact=id.upper())
+    except Agency.DoesNotExist:
+        raise Http404
+    if request.method == 'POST':
+        form= VehicleAddForm(request.POST)
+        vehicle = form.save(commit=False)
+        vehicle.agency = agency
+        if form.is_valid():
+            vehicle=form.save()
+            return render(request, 'manager/index.html')
+#Ajouter vérification des données avant commit=False
+#Ajouter redirection vers Gestion des véhicules
+    else:
+        form = VehicleAddForm()
+    context = {'form': form,'agency': agency}
+    return render(request, 'manager/vehicle_add.html', context)

@@ -7,18 +7,17 @@
 <p>Agence de <b>{{agency.name}}</b></p>
 
 
-<table>
+<table id="manager_table">
     <tr>
-        <th>
+        <th id="column_manager_table">
             Catégorie
         </th>
-        <th>
+        <th id="column_manager_table">
             Marque
-        </th>
-        <th>
+        <th id="column_manager_table">
             Modèle
         </th>
-        <th>
+        <th id="column_manager_table">
             Immatriculation
         </th>
         <th>
@@ -26,30 +25,25 @@
     </tr>
     {% for vehicle in vehicle_list %}
     <tr>
-        <td>
-            {{vehicle.category}}
+        <td id="column_manager_table">
+             {{vehicle.category.code}} - {{vehicle.category.label}}
         </td>
-        <td>
+        <td id="column_manager_table">
             {{vehicle.manufacturer}}
         </td>
-        <td>
+        <td id="column_manager_table">
             {{vehicle.car_model}}
         </td>
-        <td>
+        <td id="column_manager_table">
             {{vehicle.registration_number}}
         </td>
         <td>
-            <form>
-                <input type="submit" value="Désaffecter le véhicule {{vehicle.id}}">
-            </form>
-
+            <a href="{% url 'manager:vehicle_delete' vehicle.id %}">Supprimer ce véhicule</a>
         </td>
     </tr>
         {% endfor %}
 </table>
 <p>
-    <form>
-        <input type="submit" value="Ajouter un véhicule à l'agence {{agency.id}}">
-    </form>
+    <a href="{% url 'manager:vehicle_add' agency.id %}">Ajouter un véhicule</a>
 </p>
 {% endblock %}

@@ -1,41 +1,54 @@
-{% extends "visitor/base.html" %}
+{% extends "manager/base.html" %}
 
 {% block title %}SUPERLOC | Disponibilité des véhicules{% endblock %}
 
 {% block content %}
-<h1>Disponibilité des véhicules</h1>
-<p>Agence de <b>{{agency.name}}</b></p>
+<div>
+    <h1>Disponibilité des véhicules</h1>
+    <p>Agence de <b>{{agency.name}}</b></p>
+    <table id="manager_table">
+        <tr id="manager_table">
+            <th id="column_manager_table">
+                Catégorie
+            </th>
+            <th id="column_manager_table">
+                Marque
+            </th>
+            <th id="column_manager_table">
+                Modèle
+            </th>
+            <th id="column_manager_table">
+                Immatriculation
+            </th>
+            <th id="column_manager_table">
+                Disponible à partir du
+            </th>
+            <th id="column_manager_table">
+                Disponible jusqu'au
+            </th>
+        </tr>
+        {% for vehicle in vehicle_list %}
+        <tr>
+            <td id="column_manager_table">
+                {{vehicle.category.code}} - {{vehicle.category.label}}
+            </td>
+            <td id="column_manager_table">
+                {{vehicle.manufacturer}}
+            </td>
+            <td id="column_manager_table">
+                {{vehicle.car_model}}
+            </td>
+            <td id="column_manager_table">
+                {{vehicle.registration_number}}
+            </td>
+            <td id="column_manager_table">
 
-<table>
-    <tr>
-        <th>
-            Catégorie
-        </th>
-        <th>
-            Marque
-        </th>
-        <th>
-            Modèle
-        </th>
-        <th>
-            Immatriculation
-        </th>
-    </tr>
-    {% for vehicle in vehicle_list %}
-    <tr>
-        <td>
-            {{vehicle.category.code}} - {{vehicle.category.label}}
-        </td>
-        <td>
-            {{vehicle.manufacturer}}
-        </td>
-        <td>
-            {{vehicle.car_model}}
-        </td>
-        <td>
-            {{vehicle.registration_number}}
-        </td>
-    </tr>
+            </td>
+            <td id="column_manager_table">
+
+            </td>
+        </tr>
         {% endfor %}
-</table>
+    </table>
+</div>
 {% endblock %}

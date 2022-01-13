@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <title>{% block title %}SUPERLOC | Manager{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'visitor/style.css' %}" />
+    </head>
+<body>
+    <header class=banner>
+        <div id="logo">
+            <a href="{% url 'visitor:home' %}" title="Accueil">
+            <img src="{% static 'visitor/images/logo.png' %}" alt="logo"></a>
+        </div>
+        <div id="contact_manager">
+        </div>
+        <div id="menu_name">
+            <div id="company_name">
+                <b>SUPERLOC</b>
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="configuration">
+            <div id="log">
+                {% if request.user.is_authenticated %}
+                    {{ request.user.first_name }} {{ request.user.last_name }}</br>
+                    <a href="{% url 'visitor:logout' %}?next={{ request.path }}">Se déconnecter</a>
+                {% endif %}
+            </div>
+            <div id="language">
+                <a href="{% url 'visitor:language_choice' %}"><b>FR</b></a>
+            </div>
+            <div id=calendar_clock>
+                <div id="clock">
+                    {% now "H:i" %}
+                </div>
+                <div id="calendar">
+                    {% now "l j F Y" %}
+                </div>
+            </div>
+        </div>
+    </header>
+        {% block content %}{% endblock %}
+</body>
+</html>

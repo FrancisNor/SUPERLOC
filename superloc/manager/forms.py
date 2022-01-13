@@ -21,8 +21,8 @@ def get_categories():
 class VehicleAddForm(forms.ModelForm):
     class Meta:
         model = Vehicle
-        fields = ('category', 'manufacturer', 'car_model', 'registration_number', 'vehicle_identification_number', 'agency', 'is_active')
-        labels = {'category': ('Catégorie')}
+        fields = ('category', 'manufacturer', 'car_model', 'registration_number', 'vehicle_identification_number')
+        labels = {'category': ('Catégorie'), 'vehicle_identification_number': ("Numéro d'identification du véhicule (VIN)")}
         widgets = {'category': forms.Select(choices=get_categories())}
 
 """

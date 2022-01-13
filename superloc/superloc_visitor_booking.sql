@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `visitor_booking`;
 CREATE TABLE `visitor_booking` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `date_start` datetime(6) NOT NULL,
-  `scheduled_date_end` datetime(6) NOT NULL,
   `date_end` datetime(6) NOT NULL,
   `agency_id` bigint NOT NULL,
   `customer_id` bigint NOT NULL,
@@ -58,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-07  8:56:56
+-- Dump completed on 2022-01-12  0:02:39

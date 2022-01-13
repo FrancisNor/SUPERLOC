@@ -1,0 +1,16 @@
+{% extends "manager/base.html" %}
+
+{% block title %}SUPERLOC | Disponibilité des véhicules{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Disponibilité des véhicules</h1>
+    <p>Agence de <b>{{agency.name}}</b></p>
+    <form action="" method="post">
+        {%csrf_token%}
+        <p>Choisissez un client</p>
+        <p>Véhicule {{vehicle.manufacturer}} {{vehicle.car_model}} immatriculé {{vehicle.registration_number}}</p>
+        <p>Réservation du <b>{{date_departure}}</b> au <b>{{date_back}}</b></p>
+        <input type="submit" value="Confirmer la réservation">
+  </form>
+{% endblock %}

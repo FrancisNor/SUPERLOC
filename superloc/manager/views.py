@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test, per
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.http import Http404
-from visitor.models import Category, Vehicle, Booking, Agency
-from .forms import GetAgencyForm, VehicleAddForm
+from visitor.models import Category, Vehicle, Booking, Agency, vehicle_availability_list
+from .forms import GetAgencyForm, VehicleAddForm, AvailabilityForm
 
 class LoginManager(LoginView):
     template_name = 'manager/login.html'
@@ -20,13 +20,26 @@ def home(request):
     return render(request, 'manager/index.html')
 
 @login_required(login_url='manager:login')
-def vehicles_availability_agency_choice(request):
+def vehicles_availability_form(request):
     if request.method == 'POST':
-         agency = request.POST.get('name')
-         return redirect('manager:vehicles_availability', agency)
-    get_agency_form=GetAgencyForm()
-    context= {'form': get_agency_form}
-    return render(request, 'manager/vehicles_availability_agency_choice.html', context)
+        form = AvailabilityForm(request.POST)
+        if form.is_valid():
+            agency_id = request.POST.get('agency')
+            category_id = request.POST.get('category')
+            date_departure = request.POST.get('date_departure')
+            date_back= request.POST.get('date_back')
+            agency_departure = Agency.objects.get(id=agency_id)
+            category = Category.objects.get(id=category_id)
+            vehicle_list=vehicle_availability_list(category, agency_departure, date_departure, date_back)
+            context = {'agency':agency_departure,
+                       'vehicle_list':vehicle_list,
+                       'date_departure':date_departure,
+                       'date_back':date_back,
+                       }
+            return render(request, 'manager/vehicles_availability.html', context)
+    availability_form=AvailabilityForm()
+    context = {'form': availability_form}
+    return render(request, 'manager/vehicles_availability_form.html', context)
 
 @login_required(login_url='manager:login')
 def vehicles_availability(request, id) :
@@ -40,6 +53,10 @@ def vehicles_availability(request, id) :
                }
     return render(request, 'manager/vehicles_availability.html', context)
 #Affiche tous les véhicules affectés à l'agence, pas de filtre sur les dates de réservations
+
+@login_required(login_url='manager:login')
+def booking(request):
+    return render(request, 'manager/vehicles_availability.html')
 
 @login_required(login_url='manager:login')
 def vehicles_management_agency_choice(request):

@@ -103,17 +103,17 @@ class Booking(models.Model):
 
 def vehicle_availability_list(category, agency_departure, date_departure, date_back):
     bookings_to_exclude_list = (
-        Bookings.objects.all()
+        Booking.objects.all()
             .filter(agency=agency_departure)
             .filter(date_end__gte=date_departure, date_start__lte=date_departure)
-            .filter(date_start__lte=date_back, date_end__gte=date_start)
+            .filter(date_start__lte=date_back, date_end__gte=date_departure)
     )
     available_vehicles = (
         Vehicle.objects.all()
             .filter(is_active=True)
-            .filter(agency=agency)
+            .filter(agency=agency_departure)
             .filter(category=category)
-            .exclude(id__in=Subquery(bookings_to_exclude_list.values('vehicle')))
+            .exclude(id__in=(bookings_to_exclude_list.values('vehicle')))
     )
     return available_vehicles
 

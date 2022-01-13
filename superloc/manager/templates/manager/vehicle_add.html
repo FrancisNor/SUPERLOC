@@ -3,12 +3,13 @@
 {% block title %}SUPERLOC | Gestion des véhicules{% endblock %}
 
 {% block content %}
-</div>
+<div>
   <h1>Gestion des véhicules</h1>
-  <form action="{% url 'manager:vehicles_management_agency_choice' %}" method="post">
+  <p>Agence de <b>{{agency.name}}</b></p>
+  <form action="" method="post">
     {%csrf_token%}
     {{ form.as_p }}
-    <input type="submit" value="Gérer les véhicules">
+    <input type="submit" value="Ajouter le véhicule">
   </form>
 </div>
 {% endblock %}

@@ -1,13 +1,16 @@
-{% extends 'visitor/base.html' %}
+{% extends 'manager/base.html' %}
 
-{% block title %}SUPERLOC | Location de véhicules de tourisme et utilitaires{% endblock %}
+{% block title %}SUPERLOC | Login manager{% endblock %}
 
 {% block content %}
-<form action="{% url 'manager:login' %}" method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" value="Se connecter"></p>
-    <input type="hidden" name="next" value="{{ next }}"/>
-    <p>Pas de compte ? Contactez votre administrateur.</p>
-</form>
+<div>
+    <h1>Login manager</h1>
+    <form action="{% url 'manager:login' %}" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Se connecter"></p>
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <p>Pas de compte ? Contactez votre administrateur.</p>
+    </form>
+</div>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 
 GEARS_CHOICES = (
@@ -33,7 +34,7 @@ class Category(models.Model):
     is_active = models.BooleanField('Actif', default=True)
 
     class Meta:
-        verbose_name = 'Catégorie'
+        verbose_name = 'Catégories de véhicule'
         ordering = ['code']
 
     def __str__(self):
@@ -49,7 +50,7 @@ class Agency(models.Model):
     is_active = models.BooleanField('Actif', default=True)
 
     class Meta:
-        verbose_name = 'Agence'
+        verbose_name = 'Agences de location'
         ordering = ['name']
 
     def __str__(self):
@@ -58,7 +59,7 @@ class Agency(models.Model):
 class Vehicle(models.Model):
     manufacturer = models.CharField('Constructeur', max_length=50)
     car_model = models.CharField('Modèle', max_length=50, null=True)
-    registration_number = models.CharField('Immatriculation', max_length=9, unique=True)
+    registration_number = models.CharField('Immatriculation', max_length=9, unique=True, validators=[RegexValidator(regex=r'^[A-Z]{2}-\d{3}-[A-Z]{2}$', message='Immatriculation invalide ! Le format attendu est AA-000-AA.')])
     vehicle_identification_number = models.CharField('VIN', max_length=17, unique=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     agency = models.ForeignKey(Agency, on_delete=models.PROTECT)
@@ -98,5 +99,4 @@ class Booking(models.Model):
     agency = models.ForeignKey(Agency, on_delete=models.PROTECT)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     date_start = models.DateTimeField('Date de début de location')
-    scheduled_date_end = models.DateTimeField('Date prévue de fin de location')
     date_end = models.DateTimeField('Date de fin de location')

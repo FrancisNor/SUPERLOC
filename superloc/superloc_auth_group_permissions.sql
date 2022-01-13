@@ -31,7 +31,7 @@ CREATE TABLE `auth_group_permissions` (
   KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
   CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `auth_group_permissions` (
 
 LOCK TABLES `auth_group_permissions` WRITE;
 /*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
-INSERT INTO `auth_group_permissions` VALUES (14,2,6),(11,2,8),(12,2,10),(13,2,12),(6,2,25),(7,2,26),(8,2,28),(9,2,29),(10,2,30),(5,2,32),(15,3,33),(16,3,34),(17,3,36),(18,3,41),(19,3,42),(20,3,44);
+INSERT INTO `auth_group_permissions` VALUES (73,2,5),(74,2,6),(75,2,7),(76,2,8),(77,2,9),(78,2,10),(79,2,11),(80,2,12),(81,2,13),(82,2,14),(83,2,15),(84,2,16),(85,2,25),(86,2,26),(87,2,27),(88,2,28),(89,2,29),(90,2,30),(91,2,31),(92,2,32);
 /*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-07  8:56:59
+-- Dump completed on 2022-01-12  0:02:40

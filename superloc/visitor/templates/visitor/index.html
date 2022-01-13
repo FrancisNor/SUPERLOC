@@ -55,33 +55,46 @@
             <div id="quick_rent">
                 <h2>Louer un véhicule</h2>
                 <div id="agence">
-                    Trouver votre agence
-                    <button type="submit">Go !</button>
+                    <form action="{% url 'visitor:agencies' %}">
+                        Trouver votre agence
+                        <button type="submit">Go !</button>
+                    </form>
                 </div>
                 <form>
                     <div id="vehicle_choice">
-                        <input type="radio" id="Choice1"
-                        name="vehiclestype" value="Tous véhicules" checked>
-                        <label for="Choice1">Tous véhicules</label>
-                        <input type="radio" id="Choice2"
-                        name="vehiclestype" value="Voitures">
-                        <label for="Choice2">Voitures</label>
-                        <input type="radio" id="Choice3"
-                        name="vehiclestype" value="Utilitaires">
-                        <label for="Choice3">Utilitaires</label>
+                        Catégorie de véhicule
+                        <select id="category" required>
+                            <option value="L">L - Compacte automatique</option>
+                        </select>
                     </div>
-                    <div id="date_choice">
+                    <div id ="date_agency">
                         <div id="start">
-                            <label for="BEGDA">Départ</label>
-                            <input type="datetime-local" id="BEGDA"
-                            name="BEGDA"
-                            min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                            <div class="date">
+                                <label for="date_start">Départ</label><br>
+                                <input type="datetime-local" id="date_start"
+                                name="date_start"
+                                min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                            </div>
+                            <div class="agency">
+                                Agence<br>
+                                <select id="agency_start" required>
+                                    <option value="1">Paris - Dauphine</option>
+                                </select>
+                            </div>
                         </div>
-                        <div id="back">
-                            <label for="ENDDA">Retour</label>
-                            <input type="datetime-local" id="ENDDA"
-                            name="ENDDA"
-                            min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                        <div class="back">
+                            <div class="date">
+                                <label for="date_back">Retour</label><br>
+                                <input type="datetime-local" id="date_back"
+                                name="date_back"
+                                min="2021-10-01T00:00" max="2022-12-01T00:00" required>
+                            </div>
+                            <div class="agency">
+                                Agence<br>
+                                <select id="agency_back" required>
+                                    <option value="1">Paris - Dauphine</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div id="book">

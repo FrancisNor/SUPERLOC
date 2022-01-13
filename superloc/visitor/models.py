@@ -105,7 +105,7 @@ def vehicle_availability_list(category, agency_departure, date_departure, date_b
     bookings_to_exclude_list = (
         Booking.objects.all()
             .filter(agency=agency_departure)
-            .filter(date_end__gte=date_departure, date_start__lte=date_departure)
+            #.filter(date_end__gte=date_departure, date_start__lte=date_departure)
             .filter(date_start__lte=date_back, date_end__gte=date_departure)
     )
     available_vehicles = (

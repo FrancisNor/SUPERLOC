@@ -39,7 +39,7 @@ CREATE TABLE `visitor_customer` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `visitor_customer_user_id_87b3f5d0_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `visitor_customer` (
 
 LOCK TABLES `visitor_customer` WRITE;
 /*!40000 ALTER TABLE `visitor_customer` DISABLE KEYS */;
-INSERT INTO `visitor_customer` VALUES (1,'PRI','1968-01-01','6 rue de la République','69001','LOS ANGELES','0758634510','customer_licences/nuage-de-mots_2.png','12155468545',1,'4972015847520159','2023-09-01',6),(2,'PRI',NULL,NULL,NULL,NULL,NULL,'',NULL,1,NULL,NULL,7);
+INSERT INTO `visitor_customer` VALUES (1,'PRI','1968-01-01','6 rue de la République','69001','LOS ANGELES','0758634510','customer_licences/nuage-de-mots_2.png','12155468545',1,'4972015847520159','2023-09-01',6),(2,'PRI',NULL,NULL,NULL,NULL,NULL,'',NULL,1,NULL,NULL,7),(3,'PRI',NULL,NULL,NULL,NULL,NULL,'',NULL,1,NULL,NULL,8),(4,'PRI',NULL,NULL,NULL,NULL,NULL,'',NULL,1,NULL,NULL,9),(5,'PRI',NULL,NULL,NULL,NULL,NULL,'',NULL,1,NULL,NULL,10);
 /*!40000 ALTER TABLE `visitor_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-12  0:02:40
+-- Dump completed on 2022-01-14  0:02:34

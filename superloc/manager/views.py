@@ -52,7 +52,6 @@ def vehicles_availability(request, id) :
                'agency': agency
                }
     return render(request, 'manager/vehicles_availability.html', context)
-#Affiche tous les véhicules affectés à l'agence, pas de filtre sur les dates de réservations
 
 @login_required(login_url='manager:login')
 def booking(request):
@@ -108,7 +107,7 @@ def vehicle_add(request,id):
         if form.is_valid():
             vehicle=form.save()
             return render(request, 'manager/index.html')
-            #return render(request, 'manager/vehicles_management.html', {'agency': agency})
+            #return redirect(request, 'manager/vehicles_management.html', {'agency': agency})
     else:
         form = VehicleAddForm()
     context = {'form': form,'agency': agency}

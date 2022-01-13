@@ -26,18 +26,25 @@
             <nav id="menu">
                 <ul>
                     <li><a href="{% url 'visitor:tourism_categories' %}"><b>Catalogue</b></a></li>
-                    <li><a href="{% url 'visitor:login' %}"><b>Espace particuliers</b></a></li>
+                    <li>{% if request.user.is_authenticated %}
+                        <a href="{% url 'visitor:edit_customer' %}?next={{ request.path }}">
+                            {{ request.user.first_name }} {{ request.user.last_name }}</a>
+                        {% else %}<a href="{% url 'visitor:login' %}?next={{ request.path }}"><b>Espace particuliers</b></a>
+                        {% endif %}
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li></li>
+                    <li></li>
+                    {% else %}
                     <li><a href="{% url 'visitor:todo' %}"><b>Espace pro</b></a></li>
-                    <li><a href="{% url 'visitor:inscription' %}"><b>Inscription</b></a></li>
+                    <li><a href="{% url 'visitor:inscription' %}?next={{ request.path }}"><b>Inscription</b></a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
         <div id="configuration">
             <div id="log">
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'visitor:edit_customer' %}?next={{ request.path }}">
-                        {{ request.user.first_name }} {{ request.user.last_name }}
-                    </a>
                     <a href="{% url 'visitor:logout' %}?next={{ request.path }}">
                         <img id="logout" class="toolbar-icon"
                              alt="Se déconnecter"/>

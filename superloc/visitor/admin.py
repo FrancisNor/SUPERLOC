@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Category, Agency
 #from django.contrib.auth.models import User
 
+admin.site.site_header = 'SUPERLOC - Administrateur'
 
 @admin.register(Agency)
 class AgencyAdmin(admin.ModelAdmin):

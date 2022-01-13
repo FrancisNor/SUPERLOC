@@ -91,6 +91,7 @@ def vehicle_add(request,id):
         if form.is_valid():
             vehicle=form.save()
             return render(request, 'manager/index.html')
+            #return render(request, 'manager/vehicles_management.html', {'agency': agency})
     else:
         form = VehicleAddForm()
     context = {'form': form,'agency': agency}

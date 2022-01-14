@@ -10,10 +10,10 @@
     {% csrf_token %}
 
     <p><input type="submit" value="Log-in"></p>
-    <input type="hidden" name="next" value="{{ next }}"/>
 
     <p>Pas de compte ? Vous pouvez vous
         <a href="{% url 'visitor:inscription' %}?next={{ next }}"> enregistrer</a>
+        <input type="hidden" name="next" value="{{ next }}"/>
     </p>
 
 </form>

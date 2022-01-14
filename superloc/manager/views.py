@@ -55,7 +55,7 @@ def vehicles_availability(request, id) :
 
 @login_required(login_url='manager:login')
 def booking(request):
-    return render(request, 'manager/vehicles_availability.html')
+    return render(request, 'manager/booking.html')
 
 @login_required(login_url='manager:login')
 def vehicles_management_agency_choice(request):

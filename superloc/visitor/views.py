@@ -3,7 +3,7 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from visitor.models import Category, Agency, Customer, vehicle_availability_list
+from visitor.models import Category, Agency, Customer, Booking, vehicle_availability_list
 from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm
 
 def home(request):
@@ -78,3 +78,11 @@ def edit_customer(request):
         next_page = request.GET.get('next')
         return render(request, 'visitor/edit_customer.html',
                       {'user_form': user_form, 'customer_form': customer_form, 'next': next_page})
+
+@login_required
+def booking_management(request):
+    user=request.user
+    customer=Customer.objects.get(user_id=user.id)
+    booking_list=Booking.objects.filter(customer_id=customer.id)
+    context = {'booking_list' : booking_list, 'user' : user}
+    return render(request, 'visitor/booking_management.html', context)

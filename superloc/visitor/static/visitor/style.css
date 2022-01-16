@@ -294,21 +294,7 @@ figcaption
 {
     padding: 10px;
 }
-/*
-#date_choice
-{
-    border : 5px black;
-    padding-right: 10px;
-    display: flex;
-}
 
-#agency_choice
-{
-    border : 5 px red;
-    padding-right: 10px;
-    display: flex;
-}
-*/
 #date_agency
 {
     display: flex;

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from visitor.models import Category, Agency, Customer, Booking, vehicle_availability_list
-from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm
+from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm, AvailabilityForm
 
 def home(request):
     return render(request, 'visitor/index.html')
@@ -86,3 +86,41 @@ def booking_management(request):
     booking_list=Booking.objects.filter(customer_id=customer.id)
     context = {'booking_list' : booking_list, 'user' : user}
     return render(request, 'visitor/booking_management.html', context)
+  
+@login_required(login_url='visitor:login')
+def vehicles_availability_form(request):
+    if request.method == 'POST':
+        form = AvailabilityForm(request.POST)
+        if form.is_valid():
+            agency_id = request.POST.get('agency')
+            category_id = request.POST.get('category')
+            date_departure = request.POST.get('date_departure')
+            date_back= request.POST.get('date_back')
+            agency_departure = Agency.objects.get(id=agency_id)
+            category = Category.objects.get(id=category_id)
+            vehicle_list=vehicle_availability_list(category, agency_departure, date_departure, date_back)
+            context = {'agency':agency_departure,
+                       'vehicle_list':vehicle_list,
+                       'date_departure':date_departure,
+                       'date_back':date_back,
+                       }
+            return render(request, 'visitor/vehicles_availability.html', context)
+    availability_form=AvailabilityForm()
+    context = {'form': availability_form}
+    return render(request, 'visitor/vehicles_availability_form.html', context)
+
+@login_required(login_url='visitor:login')
+def vehicles_availability(request, id) :
+    try:
+        agency = Agency.objects.get(id__exact=id.upper())
+    except Agency.DoesNotExist:
+        raise Http404
+    vehicle = Vehicle.objects.filter(is_active=True, agency_id=agency.id)
+    context = {'vehicle_list' : vehicle,
+               'agency': agency
+               }
+    return render(request, 'visitor/vehicles_availability.html', context)
+
+@login_required(login_url='visitor:login')
+def booking(request):
+    return render(request, 'visitor/booking.html')

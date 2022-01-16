@@ -17,4 +17,5 @@ urlpatterns = [
     path('customer/edit', views.edit_customer, name='edit_customer'),
     path('language_choice', views.language_choice, name= 'language_choice'),
     path('agencies', views.agencies, name= 'agencies'),
+    path('booking_management', views.booking_management, name= 'booking_management'),
     ]

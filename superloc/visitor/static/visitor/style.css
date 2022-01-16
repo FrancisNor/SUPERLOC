@@ -442,6 +442,17 @@ figcaption
     width: 15%
 }
 
+#visitor_table
+{
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+#column_visitor_table
+{
+    border: 1px solid black;
+}
+
 footer
 {
     display: flex;

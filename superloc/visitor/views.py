@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from django.db.models import Subquery
 
-from visitor.models import Category, Agency, Customer, vehicle_availability_list, Vehicle, Contrat
+from visitor.models import Category, Agency, Customer, vehicle_availability_list, Vehicle, Contrat, Booking
 from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm, AvailabilityForm, ReservationVehiculeForm, ClientForm
 
 def home(request):
@@ -117,6 +117,14 @@ def vehicles_availability(request, id) :
 @login_required(login_url='visitor:login')
 def booking(request):
     return render(request, 'visitor/booking.html')
+
+@login_required
+def booking_management(request):
+    user=request.user
+    customer=Customer.objects.get(user_id=user.id)
+    booking_list=Booking.objects.filter(customer_id=customer.id)
+    context = {'booking_list' : booking_list, 'user' : user}
+    return render(request, 'visitor/booking_management.html', context)
 
 ###################################################################################################
 

@@ -1,7 +1,8 @@
 {% extends "visitor/base.html" %}
 {% block title %}Modifier votre compte{% endblock %}
 {% block content %}
-    <h1>Modifier votre compte</h1>
+    <h1>Bonjour {{ request.user.first_name }} {{ request.user.last_name }}</h1>
+    <h1>Votre compte :</h1>
     <form method="post" enctype="multipart/form-data">
         {{ user_form.as_p }}
         {{ customer_form.as_p }}

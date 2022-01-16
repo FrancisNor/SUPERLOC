@@ -1,0 +1,14 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Disponibilité des véhicules{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Disponibilité des véhicules</h1>
+  <form action="{% url 'visitor:vehicles_availability_form' %}" method="post">
+    {%csrf_token%}
+    {{ form.as_p }}
+    <input type="submit" value="Consulter les disponibilités">
+  </form>
+</div>
+{% endblock %}

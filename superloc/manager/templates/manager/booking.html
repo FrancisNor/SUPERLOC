@@ -10,7 +10,13 @@
         {%csrf_token%}
         <p>Choisissez un client</p>
         <p>Véhicule {{vehicle.manufacturer}} {{vehicle.car_model}} immatriculé {{vehicle.registration_number}}</p>
-        <p>Réservation du <b>{{date_departure}}</b> au <b>{{date_back}}</b></p>
+        <p>Réservation du <b>{{date_departure_day}}/{{date_departure_month}}/{{date_departure_year}}</b> à <b>{{date_departure_time}}</b> au <b>{{date_back_day}}/{{date_back_month}}/{{date_back_year}}</b> à <b>{{date_back_time}}</b></p>
+
+        
+
+
+
+
         <input type="submit" value="Confirmer la réservation">
   </form>
 {% endblock %}

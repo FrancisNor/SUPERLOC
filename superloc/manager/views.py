@@ -32,6 +32,14 @@ def vehicles_availability_form(request):
             agency_departure = Agency.objects.get(id=agency_id)
             category = Category.objects.get(id=category_id)
             vehicle_list=vehicle_availability_list(category, agency_departure, date_departure, date_back)
+            date_departure_day = date_departure[8:10]
+            date_departure_month = date_departure[5:7]
+            date_departure_year = date_departure[0:4]
+            date_departure_time = date_departure[11:]
+            date_back_day = date_back[8:10]
+            date_back_month = date_back[5:7]
+            date_back_year = date_back[0:4]
+            date_back_time = date_back[11:]
             if date_back<date_departure:
                 return HttpResponse('La date de retour doit être postérieure à la date de départ.')
             else:
@@ -39,6 +47,14 @@ def vehicles_availability_form(request):
                             'vehicle_list':vehicle_list,
                             'date_departure':date_departure,
                             'date_back':date_back,
+                            'date_departure_day':date_departure_day,
+                            'date_departure_month':date_departure_month,
+                            'date_departure_year':date_departure_year,
+                            'date_departure_time':date_departure_time,
+                            'date_back_day':date_back_day,
+                            'date_back_month':date_back_month,
+                            'date_back_year':date_back_year,
+                            'date_back_time':date_back_time,
                 }       
                 return render(request, 'manager/vehicles_availability.html', context)
     availability_form=AvailabilityForm()

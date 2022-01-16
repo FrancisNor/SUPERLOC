@@ -8,6 +8,6 @@
         {{ customer_form.as_p }}
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}"/>
-        <p><input type="submit" value="Save changes"></p>
+        <p><input type="submit" value="Enregistrer les modifications"></p>
     </form>
 {% endblock %}

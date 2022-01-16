@@ -74,7 +74,7 @@ def vehicles_availability(request, id) :
     return render(request, 'manager/vehicles_availability.html', context)
 
 @login_required(login_url='manager:login')
-def booking(request):    
+def booking(request):
     return render(request, 'manager/booking.html')
 
 @login_required(login_url='manager:login')
@@ -109,10 +109,10 @@ def vehicle_delete(request, id) :
         vehicle=Vehicle.objects.get(id=id)
         vehicle.is_active = False
         vehicle.save()
-        return render(request, 'manager/index.html')
+        agency=Agency.objects.get(id=vehicle.agency_id)
+        agency_nbr=agency.id
+        return redirect(f'/manager/vehicles_management/{agency_nbr}')
     return render(request, 'manager/vehicle_delete.html', {'vehicle': vehicle})
-#Ajouter une règle pour vérifier qu'il n'y a pas de réservation prévue ou en cours?
-#Ajouter redirection vers Gestion des véhicules
 
 @login_required(login_url='manager:login')
 @permission_required('visitor.change_vehicle', raise_exception=True)
@@ -126,10 +126,10 @@ def vehicle_add(request,id):
         form= VehicleAddForm(request.POST, instance=vehicle)
         if form.is_valid():
             vehicle=form.save()
-            return render(request, 'manager/index.html')
-            #return redirect(request, 'manager/vehicles_management.html', {'agency': agency})
+            agency = Agency.objects.get(id=vehicle.agency_id)
+            agency_nbr = agency.id
+            return redirect(f'/manager/vehicles_management/{agency_nbr}')
     else:
         form = VehicleAddForm()
     context = {'form': form,'agency': agency}
     return render(request, 'manager/vehicle_add.html', context)
-#Ajouter redirection vers Gestion des véhicules

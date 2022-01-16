@@ -75,6 +75,9 @@ def clean(self):
             self.add_error('date_back', ValidationError(message, code='invalid'))    
 '''
 
+
+
+
 """
 Utiliser la form de visitor (à surcharger ?) pour sélection du client ? 
 class BookingEditForm(forms.ModelForm):

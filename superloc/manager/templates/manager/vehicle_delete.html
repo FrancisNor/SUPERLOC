@@ -10,7 +10,6 @@
     <form action="" method="post">
         {%csrf_token%}
         <input type="submit" value="Supprimer ce véhicule">
-        <input type="hidden" name="next" value="{{ vehicle.agency }}">
     </form>
 </div>
 {% endblock %}

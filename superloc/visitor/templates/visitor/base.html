@@ -27,16 +27,17 @@
                 <ul>
                     <li><a href="{% url 'visitor:tourism_categories' %}"><b>Catalogue</b></a></li>
                     <li>{% if request.user.is_authenticated %}
-                            <a href="{% url 'visitor:edit_customer' %}?next={{ request.path }}"><b>Espace particuliers</b></a>
-                        {% else %}
-                            <a href="{% url 'visitor:login' %}?next={{ request.path }}"><b>Espace particuliers</b></a>
+                        <a href="{% url 'visitor:edit_customer' %}?next={{ request.path }}">
+                            {{ request.user.first_name }} {{ request.user.last_name }}</a>
+                        {% else %}<a href="{% url 'visitor:login' %}?next={{ request.path }}"><b>Espace particuliers</b></a>
                         {% endif %}
                     </li>
-                    <li><a href="{% url 'visitor:todo' %}"><b>Espace pro</b></a></li>
                     {% if request.user.is_authenticated %}
-                        <li></li>
+                    <li></li>
+                    <li></li>
                     {% else %}
-                        <li><a href="{% url 'visitor:inscription' %}?next={{ request.path }}"><b>Inscription</b></a></li>
+                    <li><a href="{% url 'visitor:todo' %}"><b>Espace pro</b></a></li>
+                    <li><a href="{% url 'visitor:inscription' %}?next={{ request.path }}"><b>Inscription</b></a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -44,11 +45,15 @@
         <div id="configuration">
             <div id="log">
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'visitor:edit_customer' %}?next={{ request.path }}">
-                    {{ request.user.first_name }} {{ request.user.last_name }}</a><br>
-                    <a href="{% url 'visitor:logout' %}?next={{ request.path }}">Se déconnecter</a>
+                    <a href="{% url 'visitor:logout' %}?next={{ request.path }}">
+                        <img id="logout" class="toolbar-icon"
+                             alt="Se déconnecter"/>
+                    </a>
                 {% else %}
-                <a href="{% url 'visitor:login' %}?next={{ request.path }}"><b>Se connecter</b></a>
+                    <a href="{% url 'visitor:login' %}?next={{ request.path }}">
+                        <img id="login" class="toolbar-icon"
+                             alt="Se connecter/S'inscrire"/>
+                    </a>
                 {% endif %}
             </div>
             <div id="language">
@@ -72,7 +77,7 @@
             <h1>Louer</h1>
             <nav class="nav-footer" aria-label="Louer">
                 <ul class="nav-column">
-                    <li><a href="{% url 'visitor:reservation' %}">Louer une voiture</a></li>
+                    <li><a href="{% url 'visitor:vehicles_availability_form' %}">Louer une voiture</a></li>
                     <li><a href="{% url 'visitor:todo' %}">Louer un utilitaire</a></li>
                 </ul>
             </nav>
@@ -81,7 +86,7 @@
             <h1>Espace client</h1>
             <nav class="nav-footer" aria-label="Espace client">
                 <ul class="nav-column">
-                    <li><a href="{% url 'visitor:booking_management' %}">Gérer vos réservations</a></li>
+                    <li><a href="{% url 'visitor:todo' %}">Gérer vos réservations</a></li>
                     <li><a href="{% url 'visitor:todo' %}">Imprimer une facture</a></li>
                     <li><a href="{% url 'visitor:todo' %}">Conditions générales</a></li>
                 </ul>

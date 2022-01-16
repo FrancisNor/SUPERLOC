@@ -56,7 +56,7 @@ def vehicles_availability_form(request):
                             'date_back_year':date_back_year,
                             'date_back_time':date_back_time,
                 }       
-            return render(request, 'manager/vehicles_availability.html', context)
+                return render(request, 'manager/vehicles_availability.html', context)
     availability_form=AvailabilityForm()
     context = {'form': availability_form}
     return render(request, 'manager/vehicles_availability_form.html', context)

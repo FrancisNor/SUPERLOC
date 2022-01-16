@@ -9,7 +9,7 @@
     {{ form.as_p }}
     {% csrf_token %}
 
-    <p><input type="submit" value="Se connecter"></p>
+    <p><input type="submit" value="Log-in"></p>
 
     <p>Pas de compte ? Vous pouvez vous
         <a href="{% url 'visitor:inscription' %}?next={{ next }}"> enregistrer</a>

@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.core.exceptions import ValidationError
 
-from visitor.view_models import Reservation
 from .models import Customer, Agency, Category
 
 
@@ -79,60 +77,3 @@ class AvailabilityForm(forms.Form):
         if timelimit<1:
             message = "Le retour doit être au moins une heure après le départ."
             self.add_error('date_back', ValidationError(message, code='invalid'))
-
-###################################################################################################
-
-def valider_date_future(date, delai, message):
-    now = datetime.now().replace(tzinfo=date.tzinfo)
-    delta = date - now
-    delta = delta.total_seconds() / 3600
-    if delta < delai:
-        raise ValidationError(message)
-
-def valider_depart_date_future(value):
-    valider_date_future(value, 1, "La réservation doit être faite au moins une heure avant le départ")
-
-
-def valider_retour_date_future(value):
-    valider_date_future(value, 0, "Le retour ne peut pas être dans le passé")
-
-class ReservationVehiculeForm(forms.Form):
-    DATE_FORMAT = '%Y-%m-%dT%H:%M'
-    agence_depart = forms.ModelChoiceField(queryset=Agency.objects.all(), required=True)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
-    date_depart = forms.DateTimeField(label='Date de départ',
-                                         input_formats=[DATE_FORMAT],
-                                         widget=forms.DateTimeInput(
-                                             attrs={'type': 'datetime-local', },
-                                             format=DATE_FORMAT, ),
-                                         required=True,
-                                         validators=[valider_depart_date_future],
-                                         )
-    date_retour = forms.DateTimeField(label='Date de retour',
-                                      input_formats=[DATE_FORMAT],
-                                      widget=forms.DateTimeInput(
-                                          attrs={'type': 'datetime-local', },
-                                          format=DATE_FORMAT, ),
-                                      required=True,
-                                      validators=[valider_retour_date_future]
-                                      )
-
-    def clean(self):
-        cleaned_data = super().clean()
-        date_depart = cleaned_data.get('date_depart')
-        date_retour = cleaned_data.get('date_retour')
-        if date_depart is not None and date_retour is not None:
-            delai = date_retour - date_depart
-            delai = delai.total_seconds() / 3600
-            if delai < 1:
-                message = "Le retour doit être au moins une heure après le départ"
-                self.add_error('date_retour', ValidationError(message, code='invalid'))
-
-    class Meta:
-        model = Reservation
-        fields = ('agence_depart', 'categorie', 'date_depart', 'date_retour')
-
-class ClientForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ('address',)

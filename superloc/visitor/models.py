@@ -1,8 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 
 GEARS_CHOICES = (
     ('M', 'Manuelle'),
@@ -93,15 +91,6 @@ class Customer(models.Model):
     creditCardNumber = models.CharField('Numéro de carte de paiement', max_length=16, null=True)
     creditCardValidity = models.DateField('Fin de validité de la carte de paiement', null=True)
 
-    @receiver(post_save, sender=User)
-    def create_user_client(sender, instance, created, **kwargs):
-        if created:
-            Customer.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_client(sender, instance, **kwargs):
-        instance.customer.save()
-        
     def __str__(self):
         return f'Customer {self.user.username}'
 
@@ -223,15 +212,3 @@ def selection_vehicule(request, reservation, reservation_form):
     context = {'vehicules': vehicules, 'reservation': reservation, 'reservation_form': reservation_form}​
     return render(request, 'confirm-reservation-infos-vehicule.html', context)​
 '''
-
-class Contrat(models.Model):
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, related_name='reservations', on_delete=models.CASCADE)
-
-    date_debut = models.DateTimeField()
-    date_fin = models.DateTimeField()
-    tarif_base = models.FloatField(null=True)
-    taux_tva = models.FloatField(default=20)
-    tva = models.FloatField(null=True)
-    prix_total = models.FloatField(default=0)

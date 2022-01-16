@@ -17,9 +17,7 @@ urlpatterns = [
     path('customer/edit', views.edit_customer, name='edit_customer'),
     path('language_choice', views.language_choice, name= 'language_choice'),
     path('agencies', views.agencies, name= 'agencies'),
-    path('booking_management', views.booking_management, name= 'booking_management'),
     path('vehicles_availability_form', views.vehicles_availability_form, name='vehicles_availability_form'),
     path('vehicles_availability/<str:id>', views.vehicles_availability, name='vehicles_availability'),
     path('booking', views.booking, name='booking'),
-    path('reservation/', views.reservation, name = 'reservation'),
     ]

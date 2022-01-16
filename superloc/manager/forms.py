@@ -74,6 +74,7 @@ def clean(self):
             message = "Le retour doit être au moins une heure après le départ."
             self.add_error('date_back', ValidationError(message, code='invalid'))    
 '''
+
 """
 Utiliser la form de visitor (à surcharger ?) pour sélection du client ? 
 class BookingEditForm(forms.ModelForm):

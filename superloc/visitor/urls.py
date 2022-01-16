@@ -20,4 +20,5 @@ urlpatterns = [
     path('vehicles_availability_form', views.vehicles_availability_form, name='vehicles_availability_form'),
     path('vehicles_availability/<str:id>', views.vehicles_availability, name='vehicles_availability'),
     path('booking', views.booking, name='booking'),
+    path('reservation/', views.reservation, name = 'reservation'),
     ]

@@ -1,0 +1,28 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}Confirmation de réservation{% endblock %}
+
+{% block content %}
+    <div class="display-vehicles">
+        <div style="color: black;">
+            Afin de finaliser votre réservation, merci de vérifier et compléter au besoin les informations demandées ci dessous :
+        </div>
+        <div class="customer-wrapper">
+            <div class="customer-information">
+                <form id="form-customer-information" method="POST">
+                    {% csrf_token %}
+                    {{ client_form.as_p }}
+                    <input type="hidden" name="reservation-step" value="infos-client">
+                    <input type="hidden" name="category" value="{{ reservation.category.id }}">
+                    <input type="hidden" name="agence_depart" value="{{ reservation.agence_depart.id }}">
+                    <input type="hidden" name="agence_depart_id" value="{{ reservation.agence_depart.id }}">
+                    <input type="hidden" name="vehicle_id" value="{{ vehicle_id }}">
+                    <input type="hidden" name="date_depart" value="{{ reservation.date_depart | date:'Y-m-d H:i:s' }}">
+                    <input type="hidden" name="date_retour" value="{{ reservation.date_retour | date:'Y-m-d H:i:s' }}">
+
+                    <input type="submit" name="submit" value="Valider" />
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

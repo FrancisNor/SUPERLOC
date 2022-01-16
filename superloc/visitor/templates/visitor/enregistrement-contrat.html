@@ -1,0 +1,20 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}Confirmation de réservation{% endblock %}
+
+{% block content %}
+    <div id="error" style="color: red;">
+    {% if error != '' %}
+        {{ ctr_error }}
+    {% endif %}
+    </div>
+
+    <div id="result" style="color: green;">
+    {% if ctr_error == '' %}
+        Félicitation !<br />
+        Votre contrat de location n°{{ contrat.id }} du {{ date_debut }} au {{ date_fin }} pour une {{ vehicle.category.label }}
+        pris auprès de l'agence {{ agency.name }} a bien été enregistré.<br />
+        Faites bonne route ! :)
+    {% endif %}
+    </div>
+{% endblock %}

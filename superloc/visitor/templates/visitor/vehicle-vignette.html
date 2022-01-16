@@ -1,0 +1,24 @@
+{% load static %}
+<div class="vehicle-vignette">
+
+    <p>
+          Catégory ( {{ vehicle.category.code }} ) : {{ vehicle.category.label }}
+         <br />
+        <i> {{ vehicle.description }} </i><br />
+
+    </p>
+    <form id="book_vehicle_{{ vehicle.id }}" class="book-vehicle-vignette"
+          action="" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="reservation-step" value="infos-vehicule">
+        <input type="hidden" name="category" value="{{ reservation.category.id }}">
+        <input type="hidden" name="agence_depart" value="{{ reservation.agence_depart.id }}">
+        <input type="hidden" name="agence_depart_id" value="{{ reservation.agence_depart.id }}">
+        <input type="hidden" name="vehicle_id" value="{{ vehicle.id }}">
+        <input type="hidden" name="date_depart" value="{{ reservation.date_depart | date:'Y-m-d H:i:s' }}">
+        <input type="hidden" name="date_retour" value="{{ reservation.date_retour | date:'Y-m-d H:i:s' }}">
+        <input type="submit" value="Réserver ce véhicule" id="button-book-vehicle">
+    </form>
+    <hr />
+</div>
+

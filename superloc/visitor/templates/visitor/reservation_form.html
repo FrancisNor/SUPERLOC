@@ -1,0 +1,50 @@
+
+<div id="reservation-form">
+    {% if reservation_form.errors %}
+        <div class="error-message">
+            {% for field in reservation_form %}
+                {% for error in field.errors %}
+                    <p><strong>{{ field.label }}</strong> : {{ error|escape }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form name="Reservation" action="{% url 'visitor:reservation' %}" method="post">
+        {% csrf_token %}
+        <table id="rental-form" aria-describedby="Formulaire de réservation">
+            <tr>
+                <th colspan="2" scope="colgroup">Réserver dès aujourd'hui</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="departure-agency">Départ : </label>
+                    {{ reservation_form.agence_depart }}
+                </td>
+                <td>
+                    <label for="departure-date">Date : </label>
+                    {{ reservation_form.date_depart }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="return-agency">Retour : </label>
+                </td>
+                <td>
+                    <label for="return-date">Date : </label>
+                    {{ reservation_form.date_retour }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="category">Category : </label>
+                    {{ reservation_form.category }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Confirmer la réservation">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

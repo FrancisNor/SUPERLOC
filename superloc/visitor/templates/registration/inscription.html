@@ -7,6 +7,7 @@
     <h1>Mon compte SUPERLOC</h1>
         <form method="post">
             {{ user_form.as_p }}
+            {{ customer_form.as_p }}
             {% csrf_token %}
             <p><input type="submit" value="Créer mon compte"></p>
         </form>

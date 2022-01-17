@@ -1,0 +1,22 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Confirmation de réservation{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Confirmation de réservation</h1>
+    Confirmez-vous la réservation suivante ?
+    <p>Agence de <b>{{agency.name}}</b></p>
+    <p>Réservation n° <b>{{booking.id}}</b> du <b>{{date_departure_day}}/{{date_departure_month}}/{{date_departure_year}}</b> à <b>{{date_departure_time}}</b> au <b>{{date_back_day}}/{{date_back_month}}/{{date_back_year}}</b> à <b>{{date_back_time}}</b></p>
+    <p>Le véhicule réservé est le suivant :</p>
+    <b>{{vehicle.category.code}} - {{vehicle.category.label}} - {{vehicle.manufacturer}} - {{vehicle.car_model}}
+    immatriculé {{vehicle.registration_number}}</b>
+    <p>
+    <form action="{% url 'reservation_confirmation' %}" method="post">
+        {%csrf_token%}
+        <input type="hidden" name="car" value="{{booking.id}}">
+        <input type="submit" value="Confirmer la réservation">
+    </form>
+    </p>
+</div>
+{% endblock %}

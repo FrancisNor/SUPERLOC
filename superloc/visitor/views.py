@@ -3,8 +3,8 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from visitor.models import Category, Agency, Customer, Booking, vehicle_availability_list
-from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm, AvailabilityForm
+from visitor.models import Category, Agency, Customer, Booking, Vehicle, vehicle_availability_list
+from visitor.forms import UserRegistrationForm, UserEditForm, CustomerEditForm, BookingForm
 
 def home(request):
     return render(request, 'visitor/index.html')
@@ -42,24 +42,25 @@ def inscription(request):
     next_page = request.GET.get('next', '')
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            # Create a new user but do not save it yet. The password has to be set with
-            # the set_password method to ensure that it will be recorded as a hash in the
-            # database
+        customer_form = CustomerEditForm(request.POST)
+        if user_form.is_valid() and customer_form.is_valid() :
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
+            new_user.username = new_user.email
             new_user.save()
             Customer.objects.create(user=new_user)
+            customer_form.save()
             return render(request, 'registration/inscription_done.html',
                           {'new_user': new_user, 'next': next_page})
         else:
             messages.error(request, "Error")
             return render(request, 'registration/inscription.html',
-                          {'user_form': user_form, 'next': next_page})
+                          {'user_form': user_form, 'customer_form': customer_form, 'next': next_page})
     else:
         user_form = UserRegistrationForm()
+        customer_form = CustomerEditForm()
         return render(request, 'registration/inscription.html',
-                      {'user_form': user_form, 'next': next_page})
+                      {'user_form': user_form, 'customer_form': customer_form, 'next': next_page})
 
 
 @login_required
@@ -79,11 +80,11 @@ def edit_customer(request):
         return render(request, 'visitor/edit_customer.html',
                       {'user_form': user_form, 'customer_form': customer_form, 'next': next_page})
 
-@login_required(login_url='visitor:login')
-def vehicles_availability_form(request):
+@login_required
+def reservation(request):
     if request.method == 'POST':
-        form = AvailabilityForm(request.POST)
-        if form.is_valid():
+        booking_form = BookingForm(request.POST)
+        if booking_form.is_valid():
             agency_id = request.POST.get('agency')
             category_id = request.POST.get('category')
             date_departure = request.POST.get('date_departure')
@@ -91,27 +92,72 @@ def vehicles_availability_form(request):
             agency_departure = Agency.objects.get(id=agency_id)
             category = Category.objects.get(id=category_id)
             vehicle_list=vehicle_availability_list(category, agency_departure, date_departure, date_back)
+            date_departure_day = date_departure[8:10]
+            date_departure_month = date_departure[5:7]
+            date_departure_year = date_departure[0:4]
+            date_departure_time = date_departure[11:]
+            date_back_day = date_back[8:10]
+            date_back_month = date_back[5:7]
+            date_back_year = date_back[0:4]
+            date_back_time = date_back[11:]
             context = {'agency':agency_departure,
                        'vehicle_list':vehicle_list,
                        'date_departure':date_departure,
                        'date_back':date_back,
+                       'date_departure_day':date_departure_day,
+                       'date_departure_month':date_departure_month,
+                       'date_departure_year':date_departure_year,
+                       'date_departure_time':date_departure_time,
+                       'date_back_day':date_back_day,
+                       'date_back_month':date_back_month,
+                       'date_back_year':date_back_year,
+                       'date_back_time':date_back_time,
                        }
-            return render(request, 'visitor/vehicles_availability.html', context)
-    availability_form=AvailabilityForm()
-    context = {'form': availability_form}
-    return render(request, 'visitor/vehicles_availability_form.html', context)
+            return render(request, 'visitor/reservation_vehicle_choice.html', context)
+    booking_form=BookingForm()
+    context = {'form': booking_form}
+    return render(request, 'visitor/reservation.html', context)
 
-@login_required(login_url='visitor:login')
-def vehicles_availability(request, id) :
-    try:
-        agency = Agency.objects.get(id__exact=id.upper())
-    except Agency.DoesNotExist:
-        raise Http404
-    vehicle = Vehicle.objects.filter(is_active=True, agency_id=agency.id)
-    context = {'vehicle_list' : vehicle,
-               'agency': agency
-               }
-    return render(request, 'visitor/vehicles_availability.html', context)
+def reservation_vehicle_choice(request) :
+    if request.method == 'POST':
+        booking_vehicle = request.POST.get('car')
+        agency_departure = request.POST.get('agency')
+        date_departure= request.POST.get('date_departure')
+        date_back = request.POST.get('date_back')
+        vehicle = Vehicle.objects.get(registration_number=booking_vehicle)
+        agency = Agency.objects.get(id=agency_departure)
+        customer = Customer.objects.get(user_id=request.user.id)
+        booking = Booking(vehicle=vehicle,
+                          date_start=date_departure,
+                          date_end=date_back,
+                          agency=agency,
+                          customer=customer,
+                          confirm=True)
+        booking.save()
+        date_departure_day = date_departure[8:10]
+        date_departure_month = date_departure[5:7]
+        date_departure_year = date_departure[0:4]
+        date_departure_time = date_departure[11:]
+        date_back_day = date_back[8:10]
+        date_back_month = date_back[5:7]
+        date_back_year = date_back[0:4]
+        date_back_time = date_back[11:]
+        context = {'agency': agency,
+                   'booking':booking,
+                   'vehicle': vehicle,
+                   'date_departure': date_departure,
+                   'date_back': date_back,
+                   'date_departure_day': date_departure_day,
+                   'date_departure_month': date_departure_month,
+                   'date_departure_year': date_departure_year,
+                   'date_departure_time': date_departure_time,
+                   'date_back_day': date_back_day,
+                   'date_back_month': date_back_month,
+                   'date_back_year': date_back_year,
+                   'date_back_time': date_back_time,
+                   }
+        return render(request, 'visitor/index.html', context)
+    return render(request, 'visitor/reservation_confirmation')
 
 @login_required(login_url='visitor:login')
 def booking_management(request):

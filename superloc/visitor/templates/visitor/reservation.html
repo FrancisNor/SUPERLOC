@@ -1,0 +1,14 @@
+{% extends "visitor/base.html" %}
+
+{% block title %}SUPERLOC | Formulaire de réservation{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Formulaire de réservation</h1>
+  <form action="{% url 'visitor:reservation' %}" method="post">
+    {%csrf_token%}
+    {{ form.as_p }}
+    <input type="submit" value="Réserver">
+  </form>
+</div>
+{% endblock %}

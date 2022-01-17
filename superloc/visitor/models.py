@@ -100,6 +100,7 @@ class Booking(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     date_start = models.DateTimeField('Date de début de location')
     date_end = models.DateTimeField('Date de fin de location')
+    confirm = models.BooleanField(default=False)
 
 def vehicle_availability_list(category, agency_departure, date_departure, date_back):
     bookings_to_exclude_list = (

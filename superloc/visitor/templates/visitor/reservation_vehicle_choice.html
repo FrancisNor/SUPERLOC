@@ -1,0 +1,59 @@
+{% extends "manager/base.html" %}
+
+{% block title %}SUPERLOC | Formulaire de réservation{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Formulaire de réservation</h1>
+    <p>Agence de <b>{{agency.name}}</b></p>
+    <p>Réservation du <b>{{date_departure_day}}/{{date_departure_month}}/{{date_departure_year}}</b> à <b>{{date_departure_time}}</b> au <b>{{date_back_day}}/{{date_back_month}}/{{date_back_year}}</b> à <b>{{date_back_time}}</b></p>
+    {% if vehicle_list %}
+    <p>Merci de choisir un véhicule parmi les véhicules disponibles à la location :</p>
+    <table id="manager_table">
+        <tr id="manager_table">
+            <th id="column_manager_table">
+                Catégorie
+            </th>
+            <th id="column_manager_table">
+                Marque
+            </th>
+            <th id="column_manager_table">
+                Modèle
+            </th>
+            <th id="column_manager_table">
+                Immatriculation
+            </th>
+        </tr>
+        {% for vehicle in vehicle_list %}
+        <tr>
+            <td id="column_manager_table">
+                {{vehicle.category.code}} - {{vehicle.category.label}}
+            </td>
+            <td id="column_manager_table">
+                {{vehicle.manufacturer}}
+            </td>
+            <td id="column_manager_table">
+                {{vehicle.car_model}}
+            </td>
+            <td id="column_manager_table">
+                {{vehicle.registration_number}}
+            </td>
+            <td>
+                <form action="{% url 'visitor:reservation_vehicle_choice' %}" method="post">
+                    {%csrf_token%}
+                    <input type="hidden" name="car" value="{{vehicle.registration_number}}">
+                    <input type="hidden" name="agency" value="{{agency.id}}">
+                    <input type="hidden" name="date_departure" value="{{date_departure}}">
+                    <input type="hidden" name="date_back" value="{{date_back}}">
+                    <input type="submit" value="Réserver ce véhicule">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    Aucun véhicule n'est disponible avec les critères de recherches demandés.</br>
+    Merci d'effectuer une nouvelle recherche avec des critères différents.</br>
+    {% endif %}
+</div>
+{% endblock %}

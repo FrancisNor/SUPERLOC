@@ -27,21 +27,6 @@ class VehicleAddForm(forms.ModelForm):
         labels = {'category': ('Catégorie'), 'vehicle_identification_number': ("Numéro d'identification du véhicule (VIN)")}
         widgets = {'category': forms.Select(choices=get_categories())}
 
-'''
-def date_check(date, timelimit, message):
-    now = datetime.now().replace(tzinfo=date.tzinfo)
-    delta = date - now
-    delta = delta.total_seconds() / 3600
-    if delta < timelimit:
-        raise ValidationError(message)
-
-def departure_date_check(value):
-    date_check(value, 1, "La réservation doit être faite au moins une heure avant le départ.")
-    
-def back_date_check(value):
-    date_check(value, 0, "Le date de retour ne peut pas antérieure à la date de départ.")
-'''
-
 class AvailabilityForm(forms.Form):
     DATE_FORMAT = '%Y-%m-%dT%H:%M'
     agency = forms.ModelChoiceField(label='Agence', queryset=Agency.objects.filter(is_active=True), required=True)
@@ -52,7 +37,6 @@ class AvailabilityForm(forms.Form):
                                              attrs = {'type': 'datetime-local', },
                                              format = DATE_FORMAT, ),
                                          required = True,
-                                         #validators = [departure_date_check]
                                          )
     date_back = forms.DateTimeField(label='Date de retour',
                                     input_formats = [DATE_FORMAT],
@@ -60,28 +44,4 @@ class AvailabilityForm(forms.Form):
                                         attrs = {'type': 'datetime-local', },
                                         format = DATE_FORMAT, ),
                                     required = True,
-                                    #validators = [back_date_check]
                                     )
-'''
-def clean(self):
-        cleaned_data = super().clean()
-        date_departure = cleaned_data.get('date_departure')
-        date_back = cleaned_data.get('date_back')
-        if date_departure is not None and date_back is not None:
-            timelimit = date_back-date_departure
-            timelimit = timelimit.total_seconds()/3600
-        if timelimit<1:
-            message = "Le retour doit être au moins une heure après le départ."
-            self.add_error('date_back', ValidationError(message, code='invalid'))    
-'''
-
-
-
-
-"""
-Utiliser la form de visitor (à surcharger ?) pour sélection du client ? 
-class BookingEditForm(forms.ModelForm):
-    class Meta:
-        model = Booking
-        fields = ('vehicle', 'agency', 'customer', 'date_start', 'scheduled_date_end', 'date_end')
-"""

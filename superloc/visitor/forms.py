@@ -30,8 +30,6 @@ class CustomerEditForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ('licence_scan', 'licence_number', 'address', 'zipcode', 'city', 'phone', 'date_of_birth','creditCardNumber','creditCardValidity',)
-       
-        #fields = ('client_type','date_of_birth','address','zipcode','city','phone','licence_scan','licence_number','receiveAdds','creditCardNumber','creditCardValidity',)
 
 
 def date_check(date, timelimit, message):
